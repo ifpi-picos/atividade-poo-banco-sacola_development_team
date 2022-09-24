@@ -2,10 +2,10 @@ package Modulos;
 
 public class Client {
 
-    String nomeCliente;
-    String dataNascimento;
-    String cpf;
-    String endereco;
+    private String nomeCliente;
+    private String dataNascimento;
+    private String cpf;
+    private String endereco;
 
     public Client(String nomeCliente, String dataNascimento, String cpf, String endereco) {
         this.nomeCliente = nomeCliente;
