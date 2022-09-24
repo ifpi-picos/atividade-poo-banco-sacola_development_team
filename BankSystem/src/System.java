@@ -1,19 +1,19 @@
 import Modulos.Account;
 import Modulos.Client;
+import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 
 public class System {
-    private static int exibeMenu(List<Integer> opcoes) {
+    private static int exibeMenu(@NotNull List<Integer> opcoes) {
         Object[] optionsArray = opcoes.toArray();
-        int optionSelection = JOptionPane.showOptionDialog(null,
+        return JOptionPane.showOptionDialog(null,
                 "1. Iniciar Conta \n2. Exibir Contas \n3.  \n4. \n5.  \n6. Encerrar",
                 "Selecione",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 optionsArray, null);
-        return optionSelection;
     }
     public static void main(String[] args) {
 

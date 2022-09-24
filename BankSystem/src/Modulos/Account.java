@@ -34,7 +34,7 @@ public class Account {
     public static void abrirConta(Client contaClient) {
         int numAgencia = randomizator.nextInt(99999) + 1;
         int numConta = randomizator.nextInt(9999) + 1;
-        double saldo = randomizator.nextDouble(999999);
+        double saldo = randomizator.nextDouble(999);
 
         Account account = new Account(numAgencia, numConta, saldo, contaClient);
         Client.adicionarConta(account);

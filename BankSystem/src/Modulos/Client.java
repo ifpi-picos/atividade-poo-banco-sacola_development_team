@@ -1,6 +1,6 @@
 package Modulos;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 
