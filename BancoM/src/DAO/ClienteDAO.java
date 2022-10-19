@@ -11,14 +11,18 @@ import java.util.ArrayList;
 
 public class ClienteDAO {
     Connection conn;
-    PreparedStatement pstmt, pstmt2;
+    PreparedStatement pstmt;
     ResultSet rs;
+    int id_Cliente_ID;
     ArrayList<ClienteDTO> lista = new ArrayList<>();
 
     public void cadastrarCliente(ClienteDTO clienteDTO) {
         // Conexão com o banco de dados
-        String sql = "INSERT INTO clientes (nome_Cliente, cpf_Cliente, data_Nascimento, endereco_Cliente) values (?, ?, ?, ?)";
-        String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario) values (?, ?)";
+        String sql = "INSERT INTO clientes (nome_Cliente, cpf_Cliente, data_Nascimento) values (?, ?, ?)";
+        String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario, cod_Cliente) values (?, ?, ?)";
+        String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?)";
+        String sql4 = "select id_Clientes from clientes where cpf_Cliente = ?";
+        String sql5 = "INSERT INTO contas (numConta, agenciaConta, saldoConta, tipo_da_Conta, cod_Cliente) values (?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
         try {
@@ -27,45 +31,47 @@ public class ClienteDAO {
             pstmt.setString(1, clienteDTO.getNome_Client());
             pstmt.setString(2, clienteDTO.getCpf_Cliente());
             pstmt.setString(3, clienteDTO.getDataNascimento_Cliente());
-            pstmt.setString(4, clienteDTO.getEndereco_Cliente());
 
             pstmt.execute();
             pstmt.close();
 
-            // Inserindo dados na tabela usuarios
-            pstmt2 = conn.prepareStatement(sql2);
-            pstmt2.setString(1, clienteDTO.getNome_Usuario());
-            pstmt2.setString(2, clienteDTO.getSenha_Usuario());
+            // Pegando o id do cliente cadastrado
+            pstmt = conn.prepareStatement(sql4);
+            pstmt.setString(1, clienteDTO.getCpf_Cliente());
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                id_Cliente_ID = rs.getInt("id_Clientes");
+            }
 
-            pstmt2.execute();
-            pstmt2.close();
+            // Inserindo dados na tabela usuários
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setString(1, clienteDTO.getNome_Usuario());
+            pstmt.setString(2, clienteDTO.getSenha_Usuario());
+            pstmt.setInt(3, id_Cliente_ID);
+
+
+            pstmt.execute();
+            pstmt.close();
+
+            // Inserindo dados na tabela endereços
+            pstmt = conn.prepareStatement(sql3);
+            pstmt.setString(1, clienteDTO.getEndereco_Cliente().getLogradouro());
+            pstmt.setInt(2, clienteDTO.getEndereco_Cliente().getNumero());
+            pstmt.setString(3, clienteDTO.getEndereco_Cliente().getBairro());
+            pstmt.setString(4, clienteDTO.getEndereco_Cliente().getCidade());
+            pstmt.setString(5, clienteDTO.getEndereco_Cliente().getUf());
+            pstmt.setInt(6, id_Cliente_ID);
+
+            pstmt.execute();
+            pstmt.close();
+
+            // Inserindo dados na tabela contas
+
+
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + erro.getMessage());
         }
-    }
-    public ArrayList<ClienteDTO> pesquisarClientes() {
-        String sql = "SELECT * FROM clientes";
-        conn = new ConexaoDAO().conectarBD();
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                ClienteDTO objClienteDTO = new ClienteDTO();
-                objClienteDTO.setId_Cliente(rs.getInt("id_Cliente"));
-                objClienteDTO.setNome_Client(rs.getString("nome_Cliente"));
-                objClienteDTO.setCpf_Cliente(rs.getString("cpf_Cliente"));
-                objClienteDTO.setDataNascimento_Cliente(rs.getString("data_Nascimento"));
-                objClienteDTO.setEndereco_Cliente(rs.getString("endereco_Cliente"));
-
-                lista.add(objClienteDTO);
-            }
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao pesquisar clientes: " + erro.getMessage());
-        }
-        return lista;
     }
 }

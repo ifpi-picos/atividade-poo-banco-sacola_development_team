@@ -6,7 +6,8 @@ public class ClienteDTO extends UsuarioDTO {
     private String nome_Cliente;
     private String cpf_Cliente;
     private String dataNascimento_Cliente;
-    private String endereco_Cliente;
+    private EnderecoDTO endereco_Cliente;
+    private ContaDTO conta_Cliente;
 
 // Getters e Setters
     public int getId_Cliente() {
@@ -40,12 +41,20 @@ public class ClienteDTO extends UsuarioDTO {
         this.dataNascimento_Cliente = dataNascimento_Cliente;
     }
 
-    public String getEndereco_Cliente() {
+    public EnderecoDTO getEndereco_Cliente() {
         return endereco_Cliente;
     }
 
-    public void setEndereco_Cliente(String endereco_Cliente) {
+    public void setEndereco_Cliente(EnderecoDTO endereco_Cliente) {
         this.endereco_Cliente = endereco_Cliente;
+    }
+
+    public ContaDTO getConta_Cliente() {
+        return conta_Cliente;
+    }
+
+    public void setConta_Cliente(ContaDTO conta_Cliente) {
+        this.conta_Cliente = conta_Cliente;
     }
 }
 
