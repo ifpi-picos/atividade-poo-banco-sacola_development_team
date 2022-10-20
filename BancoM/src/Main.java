@@ -1,6 +1,8 @@
+import DTO.Banco;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Banco banco = new Banco();
+        banco.menu();
     }
 }

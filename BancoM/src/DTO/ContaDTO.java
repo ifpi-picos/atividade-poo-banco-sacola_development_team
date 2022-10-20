@@ -3,16 +3,9 @@ package DTO;
 public class ContaDTO {
     private int id_Conta;
     private int num_Conta;
-    private int agencia_Conta;
+    private String agencia_Conta;
     private double saldo_Conta;
 
-
-    // Construtor
-    public ContaDTO(int num_Conta, int agencia_Conta, double saldo_Conta) {
-        this.num_Conta = num_Conta;
-        this.agencia_Conta = agencia_Conta;
-        this.saldo_Conta = saldo_Conta;
-    }
 
     // Metodos
     public boolean depositar(double valor) {
@@ -48,11 +41,11 @@ public class ContaDTO {
         this.num_Conta = num_Conta;
     }
 
-    public int getAgencia_Conta() {
+    public String getAgencia_Conta() {
         return agencia_Conta;
     }
 
-    public void setAgencia_Conta(int agencia_Conta) {
+    public void setAgencia_Conta(String agencia_Conta) {
         this.agencia_Conta = agencia_Conta;
     }
 

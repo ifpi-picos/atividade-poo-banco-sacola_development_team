@@ -4,6 +4,7 @@ import DAO.ClienteDAO;
 import DTO.ClienteDTO;
 import DTO.ContaDTO;
 import DTO.EnderecoDTO;
+import DTO.UsuarioDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +31,7 @@ public class frmRegistroVIEW extends JDialog {
         super(parent);
         setTitle("Criar nova conta");
         setContentPane(registerPanel);
-        setMinimumSize(new Dimension(450, 474));
+        setMinimumSize(new Dimension(768, 480));
         setModal(true);
         setLocationRelativeTo(parent);
 
@@ -51,18 +52,22 @@ public class frmRegistroVIEW extends JDialog {
     }
 
     private void registerUser() {
+        // Pegando dados gerais do cliente
         String name = txtNome.getText();
         String cpf = txtCPF.getText();
         String birthDate = txtDataNascimento.getText();
         String street = txtLogradouro.getText();
         String number = txtNumero.getText();
 
+        // Pegando dados do endereço
         String neighborhood = txtBairro.getText();
         String city = txtCidade.getText();
         String uf = txtUF.getText();
         String username = txtNovoUsuario.getText();
         String password = txtSenha.getText();
         String confirmPassword = txtConfirmarSenha.getText();
+
+        // Abrindo conta padrão para o cliente
 
         if (name.isEmpty() || cpf.isEmpty() || birthDate.isEmpty() || street.isEmpty() || number.isEmpty() || neighborhood.isEmpty() || city.isEmpty() || uf.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
@@ -73,6 +78,9 @@ public class frmRegistroVIEW extends JDialog {
         }
         int numberInt = Integer.parseInt(number);
         EnderecoDTO endereco = new EnderecoDTO(numberInt, street, neighborhood, city, uf);
+        UsuarioDTO usuario = new UsuarioDTO();
+        usuario.setNome_Usuario(username);
+        usuario.setSenha_Usuario(password);
 
 
         ClienteDTO cliente = new ClienteDTO();
@@ -80,12 +88,14 @@ public class frmRegistroVIEW extends JDialog {
         cliente.setCpf_Cliente(cpf);
         cliente.setDataNascimento_Cliente(birthDate);
         cliente.setEndereco_Cliente(endereco);
-        cliente.setNome_Usuario(username);
-        cliente.setSenha_Usuario(password);
+        cliente.setUsuarioCliente(usuario);
+
 
 
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.cadastrarCliente(cliente);
+
+        dispose();
     }
 
     public static void main(String[] args) {

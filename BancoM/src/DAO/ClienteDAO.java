@@ -9,11 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClienteDAO {
+public class ClienteDAO extends ClienteDTO {
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;
-    int id_Cliente_ID;
     ArrayList<ClienteDTO> lista = new ArrayList<>();
 
     public void cadastrarCliente(ClienteDTO clienteDTO) {
@@ -40,14 +39,14 @@ public class ClienteDAO {
             pstmt.setString(1, clienteDTO.getCpf_Cliente());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                id_Cliente_ID = rs.getInt("id_Clientes");
+                setId_Cliente(rs.getInt("id_Clientes"));
             }
 
             // Inserindo dados na tabela usuários
             pstmt = conn.prepareStatement(sql2);
-            pstmt.setString(1, clienteDTO.getNome_Usuario());
-            pstmt.setString(2, clienteDTO.getSenha_Usuario());
-            pstmt.setInt(3, id_Cliente_ID);
+            pstmt.setString(1, clienteDTO.getUsuarioCliente().getNome_Usuario());
+            pstmt.setString(2, clienteDTO.getUsuarioCliente().getSenha_Usuario());
+            pstmt.setInt(3, getId_Cliente());
 
 
             pstmt.execute();
@@ -60,12 +59,14 @@ public class ClienteDAO {
             pstmt.setString(3, clienteDTO.getEndereco_Cliente().getBairro());
             pstmt.setString(4, clienteDTO.getEndereco_Cliente().getCidade());
             pstmt.setString(5, clienteDTO.getEndereco_Cliente().getUf());
-            pstmt.setInt(6, id_Cliente_ID);
+            pstmt.setInt(6, getId_Cliente());
 
             pstmt.execute();
             pstmt.close();
 
             // Inserindo dados na tabela contas
+            ContaDAO contaDAO = new ContaDAO();
+            contaDAO.cadastrarConta(getId_Cliente());
 
 
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");

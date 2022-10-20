@@ -1,6 +1,6 @@
 package DTO;
 
-public class ClienteDTO extends UsuarioDTO {
+public class ClienteDTO {
 
     private int id_Cliente;
     private String nome_Cliente;
@@ -8,6 +8,7 @@ public class ClienteDTO extends UsuarioDTO {
     private String dataNascimento_Cliente;
     private EnderecoDTO endereco_Cliente;
     private ContaDTO conta_Cliente;
+    private UsuarioDTO usuarioCliente;
 
 // Getters e Setters
     public int getId_Cliente() {
@@ -55,6 +56,14 @@ public class ClienteDTO extends UsuarioDTO {
 
     public void setConta_Cliente(ContaDTO conta_Cliente) {
         this.conta_Cliente = conta_Cliente;
+    }
+
+    public UsuarioDTO getUsuarioCliente() {
+        return usuarioCliente;
+    }
+
+    public void setUsuarioCliente(UsuarioDTO usuarioCliente) {
+        this.usuarioCliente = usuarioCliente;
     }
 }
 

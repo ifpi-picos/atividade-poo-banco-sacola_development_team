@@ -1,11 +1,7 @@
 package DTO;
 
-public class ContaPoupanca_EXT_Conta extends ContaDTO {
+public class ContaPoupanca extends ContaDTO {
     private double taxaJuros;
-
-    public ContaPoupanca_EXT_Conta(int num_Conta, int agencia_Conta, double saldo_Conta) {
-        super(num_Conta, agencia_Conta, saldo_Conta);
-    }
 
     public double rendimento(double taxaJuros) {
         return this.getSaldo_Conta() * taxaJuros;

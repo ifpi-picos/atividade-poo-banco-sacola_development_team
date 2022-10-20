@@ -2,12 +2,9 @@ package DTO;
 
 import javax.swing.*;
 
-public class ContaCorrente_EXT_Conta extends ContaDTO {
+public class ContaCorrente extends ContaDTO {
     private double chequeEspecial;
 
-    public ContaCorrente_EXT_Conta(int num_Conta, int agencia_Conta, double saldo_Conta) {
-        super(num_Conta, agencia_Conta, saldo_Conta);
-    }
     @Override
     public boolean depositar(double valor) {
         if (valor > 0) {
