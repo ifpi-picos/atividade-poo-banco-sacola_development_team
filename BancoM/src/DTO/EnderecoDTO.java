@@ -1,7 +1,7 @@
 package DTO;
 
 public class EnderecoDTO {
-    private int id_Endereco;
+    private int idEndereco;
     private int numero;
     private String logradouro;
     private String bairro;
@@ -18,12 +18,12 @@ public class EnderecoDTO {
     }
     // Getters e Setters
 
-    public int getId_Endereco() {
-        return id_Endereco;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId_Endereco(int id_Endereco) {
-        this.id_Endereco = id_Endereco;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public int getNumero() {

@@ -1,33 +1,33 @@
 package DTO;
 
 public class UsuarioDTO {
-    private int id_Usuario;
-    private String nome_Usuario, senha_Usuario;
+    private int idUsuario;
+    private String nomeUsuario, senhaUsuario;
 
 
 
     // Getters e Setters
-    public int getId_Usuario() {
-        return id_Usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_Usuario(int id_Usuario) {
-        this.id_Usuario = id_Usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getNome_Usuario() {
-        return nome_Usuario;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNome_Usuario(String nome_Usuario) {
-        this.nome_Usuario = nome_Usuario;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    public String getSenha_Usuario() {
-        return senha_Usuario;
+    public String getSenhaUsuario() {
+        return senhaUsuario;
     }
 
-    public void setSenha_Usuario(String senha_Usuario) {
-        this.senha_Usuario = senha_Usuario;
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
     }
 }

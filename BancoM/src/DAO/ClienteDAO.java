@@ -17,36 +17,36 @@ public class ClienteDAO extends ClienteDTO {
 
     public void cadastrarCliente(ClienteDTO clienteDTO) {
         // Conexão com o banco de dados
-        String sql = "INSERT INTO clientes (nome_Cliente, cpf_Cliente, data_Nascimento) values (?, ?, ?)";
-        String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario, cod_Cliente) values (?, ?, ?)";
-        String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?)";
-        String sql4 = "select id_Clientes from clientes where cpf_Cliente = ?";
-        String sql5 = "INSERT INTO contas (numConta, agenciaConta, saldoConta, tipo_da_Conta, cod_Cliente) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (nomeCliente, cpfCliente, dataNascimento) values (?, ?, ?)";
+        String sql2 = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, codCliente) values (?, ?, ?)";
+        String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, codCliente) values (?, ?, ?, ?, ?, ?)";
+        String sql4 = "select idClientes from clientes where cpfCliente = ?";
+        String sql5 = "INSERT INTO contas (numConta, agenciaConta, saldoConta, tipodaConta, codCliente) values (?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
         try {
             // Inserindo dados na tabela clientes
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, clienteDTO.getNome_Client());
-            pstmt.setString(2, clienteDTO.getCpf_Cliente());
-            pstmt.setString(3, clienteDTO.getDataNascimento_Cliente());
+            pstmt.setString(1, clienteDTO.getNomeClient());
+            pstmt.setString(2, clienteDTO.getCpfCliente());
+            pstmt.setString(3, clienteDTO.getDataNascimentoCliente());
 
             pstmt.execute();
             pstmt.close();
 
             // Pegando o id do cliente cadastrado
             pstmt = conn.prepareStatement(sql4);
-            pstmt.setString(1, clienteDTO.getCpf_Cliente());
+            pstmt.setString(1, clienteDTO.getCpfCliente());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                setId_Cliente(rs.getInt("id_Clientes"));
+                setId_Cliente(rs.getInt("idClientes"));
             }
 
             // Inserindo dados na tabela usuários
             pstmt = conn.prepareStatement(sql2);
-            pstmt.setString(1, clienteDTO.getUsuarioCliente().getNome_Usuario());
-            pstmt.setString(2, clienteDTO.getUsuarioCliente().getSenha_Usuario());
-            pstmt.setInt(3, getId_Cliente());
+            pstmt.setString(1, clienteDTO.getUsuarioCliente().getNomeUsuario());
+            pstmt.setString(2, clienteDTO.getUsuarioCliente().getSenhaUsuario());
+            pstmt.setInt(3, getIdCliente());
 
 
             pstmt.execute();
@@ -54,19 +54,19 @@ public class ClienteDAO extends ClienteDTO {
 
             // Inserindo dados na tabela endereços
             pstmt = conn.prepareStatement(sql3);
-            pstmt.setString(1, clienteDTO.getEndereco_Cliente().getLogradouro());
-            pstmt.setInt(2, clienteDTO.getEndereco_Cliente().getNumero());
-            pstmt.setString(3, clienteDTO.getEndereco_Cliente().getBairro());
-            pstmt.setString(4, clienteDTO.getEndereco_Cliente().getCidade());
-            pstmt.setString(5, clienteDTO.getEndereco_Cliente().getUf());
-            pstmt.setInt(6, getId_Cliente());
+            pstmt.setString(1, clienteDTO.getEnderecoCliente().getLogradouro());
+            pstmt.setInt(2, clienteDTO.getEnderecoCliente().getNumero());
+            pstmt.setString(3, clienteDTO.getEnderecoCliente().getBairro());
+            pstmt.setString(4, clienteDTO.getEnderecoCliente().getCidade());
+            pstmt.setString(5, clienteDTO.getEnderecoCliente().getUf());
+            pstmt.setInt(6, getIdCliente());
 
             pstmt.execute();
             pstmt.close();
 
             // Inserindo dados na tabela contas
             ContaDAO contaDAO = new ContaDAO();
-            contaDAO.cadastrarConta(getId_Cliente());
+            contaDAO.cadastrarConta(getIdCliente());
 
 
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");

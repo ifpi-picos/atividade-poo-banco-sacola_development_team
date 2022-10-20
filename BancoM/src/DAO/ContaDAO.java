@@ -23,8 +23,8 @@ public class ContaDAO extends ContaDTO {
         return Integer.parseInt(tipoConta);
     }
 
-    public void cadastrarConta(int cod_Cliente) {
-        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipo_da_Conta, cod_Cliente) values (?, ?, ?, ?, ?)";
+    public void cadastrarConta(int codCliente) {
+        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipodaConta, codCliente) values (?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
         // Gerando dados da conta
@@ -41,7 +41,7 @@ public class ContaDAO extends ContaDTO {
             pstmt.setString(2, agenciaConta);
             pstmt.setDouble(3, saldoConta);
             pstmt.setInt(4, tipoConta);
-            pstmt.setInt(5, cod_Cliente);
+            pstmt.setInt(5, codCliente);
 
 
             pstmt.execute();

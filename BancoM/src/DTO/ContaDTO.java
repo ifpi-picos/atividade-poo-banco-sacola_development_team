@@ -1,59 +1,59 @@
 package DTO;
 
 public class ContaDTO {
-    private int id_Conta;
-    private int num_Conta;
-    private String agencia_Conta;
-    private double saldo_Conta;
+    private int idConta;
+    private int numConta;
+    private String agenciaConta;
+    private double saldoConta;
 
 
     // Metodos
     public boolean depositar(double valor) {
         if (valor > 0) {
-            this.setSaldo_Conta(this.getSaldo_Conta() + valor);
+            this.setSaldoConta(this.getSaldoConta() + valor);
             return true;
         }
         return false;
     }
 
     public double sacar(double valor) {
-        return this.saldo_Conta -= valor;
+        return this.saldoConta -= valor;
     }
 
     public void transferir(double valor) {
-        this.saldo_Conta -= valor;
+        this.saldoConta -= valor;
     }
 
     // Getters e Setters
-    public int getId_Conta() {
-        return id_Conta;
+    public int getIdConta() {
+        return idConta;
     }
 
-    public void setId_Conta(int id_Conta) {
-        this.id_Conta = id_Conta;
+    public void setIdConta(int idConta) {
+        this.id_Conta = idConta;
     }
 
-    public int getNum_Conta() {
-        return num_Conta;
+    public int getNumConta() {
+        return numConta;
     }
 
-    public void setNum_Conta(int num_Conta) {
-        this.num_Conta = num_Conta;
+    public void setNumConta(int numConta) {
+        this.numConta = numConta;
     }
 
-    public String getAgencia_Conta() {
-        return agencia_Conta;
+    public String getAgenciaConta() {
+        return agenciaConta;
     }
 
-    public void setAgencia_Conta(String agencia_Conta) {
-        this.agencia_Conta = agencia_Conta;
+    public void setAgenciaConta(String agenciaConta) {
+        this.agenciaConta = agenciaConta;
     }
 
-    public double getSaldo_Conta() {
-        return saldo_Conta;
+    public double getSaldoConta() {
+        return saldoConta;
     }
 
-    public void setSaldo_Conta(double saldo_Conta) {
-        this.saldo_Conta = saldo_Conta;
+    public void setSaldoConta(double saldoConta) {
+        this.saldoConta = saldoConta;
     }
 }

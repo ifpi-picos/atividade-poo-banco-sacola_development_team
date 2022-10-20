@@ -8,25 +8,25 @@ public class ContaCorrente extends ContaDTO {
     @Override
     public boolean depositar(double valor) {
         if (valor > 0) {
-            this.setSaldo_Conta(this.getSaldo_Conta() + valor);
+            this.setSaldoConta(this.getSaldoConta() + valor);
             return true;
         }
         return false;
     }
     @Override
     public double sacar(double valor) {
-        if (valor > this.getSaldo_Conta()) {
-            this.setSaldo_Conta(this.getSaldo_Conta() - valor);
+        if (valor > this.getSaldoConta()) {
+            this.setSaldoConta(this.getSaldo_Conta() - valor);
             JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
         }
-        return this.getSaldo_Conta();
+        return this.getSaldoConta();
     }
     @Override
     public void transferir(double valor) {
-        if (valor > this.getSaldo_Conta()) {
-            this.setSaldo_Conta(this.getSaldo_Conta() - valor);
+        if (valor > this.getSaldoConta()) {
+            this.setSaldoConta(this.getSaldoConta() - valor);
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
         }

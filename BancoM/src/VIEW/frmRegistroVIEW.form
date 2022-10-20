@@ -212,6 +212,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Unispace" size="16" style="1"/>
           <text value=""/>
         </properties>
       </component>
@@ -222,6 +223,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Unispace" size="16" style="1"/>
           <text value=""/>
         </properties>
       </component>
@@ -232,6 +234,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Unispace" size="16" style="1"/>
           <text value=""/>
         </properties>
       </component>
@@ -242,6 +245,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Unispace" size="16" style="1"/>
           <text value=""/>
         </properties>
       </component>
@@ -251,7 +255,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Unispace" size="16" style="1"/>
+        </properties>
       </component>
       <component id="eaf53" class="javax.swing.JLabel">
         <constraints>

@@ -16,10 +16,10 @@ public class UsuarioDAO {
 
         try {
 
-            String sql = "Select * from usuarios where nome_usuario = ? and senha_usuario = ?";
+            String sql = "Select * from usuarios where nomeusuario = ? and senhausuario = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, objUsuarioDTO.getNome_Usuario());
-            pstm.setString(2, objUsuarioDTO.getSenha_Usuario());
+            pstm.setString(1, objUsuarioDTO.getNomeUsuario());
+            pstm.setString(2, objUsuarioDTO.getSenhaUsuario());
 
             ResultSet rs = pstm.executeQuery();
             return rs;

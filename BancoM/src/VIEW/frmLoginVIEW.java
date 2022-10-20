@@ -52,12 +52,12 @@ public class frmLoginVIEW extends JDialog {
     private void logar() {
         try {
 
-            String nome_usuario = txtUsuario.getText();
-            String senha_usuario = txtSenha.getText();
+            String nomeusuario = txtUsuario.getText();
+            String senhausuario = txtSenha.getText();
 
             UsuarioDTO objUsuarioDTO = new UsuarioDTO();
-            objUsuarioDTO.setNome_Usuario(nome_usuario);
-            objUsuarioDTO.setSenha_Usuario(senha_usuario);
+            objUsuarioDTO.setNomeUsuario(nomeusuario);
+            objUsuarioDTO.setSenhaUsuario(senhausuario);
 
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();
             ResultSet rsUsuarioDAO = objUsuarioDAO.autenticarUsuario(objUsuarioDTO);

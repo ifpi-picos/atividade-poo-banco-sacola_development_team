@@ -79,8 +79,8 @@ public class frmRegistroVIEW extends JDialog {
         int numberInt = Integer.parseInt(number);
         EnderecoDTO endereco = new EnderecoDTO(numberInt, street, neighborhood, city, uf);
         UsuarioDTO usuario = new UsuarioDTO();
-        usuario.setNome_Usuario(username);
-        usuario.setSenha_Usuario(password);
+        usuario.setNomeUsuario(username);
+        usuario.setSenhaUsuario(password);
 
 
         ClienteDTO cliente = new ClienteDTO();
