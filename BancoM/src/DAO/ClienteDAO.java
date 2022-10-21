@@ -1,6 +1,6 @@
 package DAO;
 
-import DTO.ClienteDTO;
+import Entidades.Cliente;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -9,13 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClienteDAO extends ClienteDTO {
+public class ClienteDAO extends Cliente {
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;
-    ArrayList<ClienteDTO> lista = new ArrayList<>();
+    ArrayList<Cliente> lista = new ArrayList<>();
 
-    public void cadastrarCliente(ClienteDTO clienteDTO) {
+    public void cadastrarCliente(Cliente cliente) {
         // Conexão com o banco de dados
         String sql = "INSERT INTO clientes (nomeCliente, cpfCliente, dataNascimento) values (?, ?, ?)";
         String sql2 = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, codCliente) values (?, ?, ?)";
@@ -27,16 +27,16 @@ public class ClienteDAO extends ClienteDTO {
         try {
             // Inserindo dados na tabela clientes
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, clienteDTO.getNomeClient());
-            pstmt.setString(2, clienteDTO.getCpfCliente());
-            pstmt.setString(3, clienteDTO.getDataNascimentoCliente());
+            pstmt.setString(1, cliente.getNomeClient());
+            pstmt.setString(2, cliente.getCpfCliente());
+            pstmt.setString(3, cliente.getDataNascimentoCliente());
 
             pstmt.execute();
             pstmt.close();
 
             // Pegando o id do cliente cadastrado
             pstmt = conn.prepareStatement(sql4);
-            pstmt.setString(1, clienteDTO.getCpfCliente());
+            pstmt.setString(1, cliente.getCpfCliente());
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 setIdCliente(rs.getInt("idClientes"));
@@ -44,8 +44,8 @@ public class ClienteDAO extends ClienteDTO {
 
             // Inserindo dados na tabela usuários
             pstmt = conn.prepareStatement(sql2);
-            pstmt.setString(1, clienteDTO.getUsuarioCliente().getNomeUsuario());
-            pstmt.setString(2, clienteDTO.getUsuarioCliente().getSenhaUsuario());
+            pstmt.setString(1, cliente.getUsuarioCliente().getNomeUsuario());
+            pstmt.setString(2, cliente.getUsuarioCliente().getSenhaUsuario());
             pstmt.setInt(3, getIdCliente());
 
 
@@ -54,11 +54,11 @@ public class ClienteDAO extends ClienteDTO {
 
             // Inserindo dados na tabela endereços
             pstmt = conn.prepareStatement(sql3);
-            pstmt.setString(1, clienteDTO.getEnderecoCliente().getLogradouro());
-            pstmt.setInt(2, clienteDTO.getEnderecoCliente().getNumero());
-            pstmt.setString(3, clienteDTO.getEnderecoCliente().getBairro());
-            pstmt.setString(4, clienteDTO.getEnderecoCliente().getCidade());
-            pstmt.setString(5, clienteDTO.getEnderecoCliente().getUf());
+            pstmt.setString(1, cliente.getEnderecoCliente().getLogradouro());
+            pstmt.setInt(2, cliente.getEnderecoCliente().getNumero());
+            pstmt.setString(3, cliente.getEnderecoCliente().getBairro());
+            pstmt.setString(4, cliente.getEnderecoCliente().getCidade());
+            pstmt.setString(5, cliente.getEnderecoCliente().getUf());
             pstmt.setInt(6, getIdCliente());
 
             pstmt.execute();

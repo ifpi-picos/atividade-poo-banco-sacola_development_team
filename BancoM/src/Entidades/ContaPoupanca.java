@@ -1,6 +1,6 @@
-package DTO;
+package Entidades;
 
-public class ContaPoupanca extends ContaDTO {
+public class ContaPoupanca extends Conta {
     private double taxaJuros;
 
     public double rendimento(double taxaJuros) {

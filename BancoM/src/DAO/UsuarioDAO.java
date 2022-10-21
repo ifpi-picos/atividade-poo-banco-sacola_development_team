@@ -1,6 +1,6 @@
 package DAO;
 
-import DTO.UsuarioDTO;
+import Entidades.Usuario;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -11,15 +11,15 @@ import java.sql.SQLException;
 public class UsuarioDAO {
     Connection conn;
 
-    public ResultSet autenticarUsuario(UsuarioDTO objUsuarioDTO) {
+    public ResultSet autenticarUsuario(Usuario objUsuario) {
         conn = new ConexaoDAO().conectarBD();
 
         try {
 
             String sql = "Select * from usuarios where nomeusuario = ? and senhausuario = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, objUsuarioDTO.getNomeUsuario());
-            pstm.setString(2, objUsuarioDTO.getSenhaUsuario());
+            pstm.setString(1, objUsuario.getNomeUsuario());
+            pstm.setString(2, objUsuario.getSenhaUsuario());
 
             ResultSet rs = pstm.executeQuery();
             return rs;

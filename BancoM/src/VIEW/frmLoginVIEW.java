@@ -1,7 +1,7 @@
 package VIEW;
 
 import DAO.UsuarioDAO;
-import DTO.UsuarioDTO;
+import Entidades.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,12 +55,12 @@ public class frmLoginVIEW extends JDialog {
             String nomeusuario = txtUsuario.getText();
             String senhausuario = txtSenha.getText();
 
-            UsuarioDTO objUsuarioDTO = new UsuarioDTO();
-            objUsuarioDTO.setNomeUsuario(nomeusuario);
-            objUsuarioDTO.setSenhaUsuario(senhausuario);
+            Usuario objUsuario = new Usuario();
+            objUsuario.setNomeUsuario(nomeusuario);
+            objUsuario.setSenhaUsuario(senhausuario);
 
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();
-            ResultSet rsUsuarioDAO = objUsuarioDAO.autenticarUsuario(objUsuarioDTO);
+            ResultSet rsUsuarioDAO = objUsuarioDAO.autenticarUsuario(objUsuario);
 
             if (rsUsuarioDAO.next()) {
                 // Se o usuário existir, abre o formulário principal

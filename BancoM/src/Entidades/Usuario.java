@@ -1,6 +1,6 @@
-package DTO;
+package Entidades;
 
-public class UsuarioDTO {
+public class Usuario {
     private int idUsuario;
     private String nomeUsuario, senhaUsuario;
 

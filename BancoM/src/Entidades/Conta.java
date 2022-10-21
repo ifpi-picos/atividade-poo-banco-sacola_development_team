@@ -1,6 +1,6 @@
-package DTO;
+package Entidades;
 
-public class ContaDTO {
+public class Conta {
     private int idConta;
     private int numConta;
     private String agenciaConta;

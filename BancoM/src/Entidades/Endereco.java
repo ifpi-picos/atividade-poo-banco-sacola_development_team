@@ -1,6 +1,6 @@
-package DTO;
+package Entidades;
 
-public class EnderecoDTO {
+public class Endereco {
     private int idEndereco;
     private int numero;
     private String logradouro;
@@ -9,7 +9,7 @@ public class EnderecoDTO {
     private String uf;
 
     // Construtor
-    public EnderecoDTO(int numero, String logradouro, String bairro, String cidade, String uf) {
+    public Endereco(int numero, String logradouro, String bairro, String cidade, String uf) {
         this.numero = numero;
         this.logradouro = logradouro;
         this.bairro = bairro;

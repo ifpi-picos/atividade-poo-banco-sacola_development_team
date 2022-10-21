@@ -1,8 +1,8 @@
-package DTO;
+package Entidades;
 
 import javax.swing.*;
 
-public class ContaCorrente extends ContaDTO {
+public class ContaCorrente extends Conta {
     private double chequeEspecial;
 
     @Override

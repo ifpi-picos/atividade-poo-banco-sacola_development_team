@@ -1,14 +1,14 @@
-package DTO;
+package Entidades;
 
-public class ClienteDTO {
+public class Cliente {
 
     private int idCliente;
     private String nomeCliente;
     private String cpfCliente;
     private String dataNascimentoCliente;
-    private EnderecoDTO enderecoCliente;
-    private ContaDTO contaCliente;
-    private UsuarioDTO usuarioCliente;
+    private Endereco enderecoCliente;
+    private Conta contaCliente;
+    private Usuario usuarioCliente;
 
 // Getters e Setters
     public int getIdCliente() {
@@ -42,27 +42,27 @@ public class ClienteDTO {
         this.dataNascimentoCliente = dataNascimentoCliente;
     }
 
-    public EnderecoDTO getEnderecoCliente() {
+    public Endereco getEnderecoCliente() {
         return enderecoCliente;
     }
 
-    public void setEnderecoCliente(EnderecoDTO enderecoCliente) {
+    public void setEnderecoCliente(Endereco enderecoCliente) {
         this.enderecoCliente = enderecoCliente;
     }
 
-    public ContaDTO getContaCliente() {
+    public Conta getContaCliente() {
         return contaCliente;
     }
 
-    public void setContaCliente(ContaDTO contaCliente) {
+    public void setContaCliente(Conta contaCliente) {
         this.contaCliente = contaCliente;
     }
 
-    public UsuarioDTO getUsuarioCliente() {
+    public Usuario getUsuarioCliente() {
         return usuarioCliente;
     }
 
-    public void setUsuarioCliente(UsuarioDTO usuarioCliente) {
+    public void setUsuarioCliente(Usuario usuarioCliente) {
         this.usuarioCliente = usuarioCliente;
     }
 }

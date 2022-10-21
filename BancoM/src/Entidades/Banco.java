@@ -1,4 +1,4 @@
-package DTO;
+package Entidades;
 
 import VIEW.frmLoginVIEW;
 import VIEW.frmRegistroVIEW;

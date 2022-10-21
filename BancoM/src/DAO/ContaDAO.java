@@ -2,7 +2,7 @@ package DAO;
 
 
 
-import DTO.ContaDTO;
+import Entidades.Conta;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-public class ContaDAO extends ContaDTO {
+public class ContaDAO extends Conta {
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;

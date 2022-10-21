@@ -1,10 +1,9 @@
 package VIEW;
 
 import DAO.ClienteDAO;
-import DTO.ClienteDTO;
-import DTO.ContaDTO;
-import DTO.EnderecoDTO;
-import DTO.UsuarioDTO;
+import Entidades.Cliente;
+import Entidades.Endereco;
+import Entidades.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,13 +76,13 @@ public class frmRegistroVIEW extends JDialog {
             return;
         }
         int numberInt = Integer.parseInt(number);
-        EnderecoDTO endereco = new EnderecoDTO(numberInt, street, neighborhood, city, uf);
-        UsuarioDTO usuario = new UsuarioDTO();
+        Endereco endereco = new Endereco(numberInt, street, neighborhood, city, uf);
+        Usuario usuario = new Usuario();
         usuario.setNomeUsuario(username);
         usuario.setSenhaUsuario(password);
 
 
-        ClienteDTO cliente = new ClienteDTO();
+        Cliente cliente = new Cliente();
         cliente.setNomeClient(name);
         cliente.setCpfCliente(cpf);
         cliente.setDataNascimentoCliente(birthDate);

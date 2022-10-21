@@ -1,4 +1,4 @@
-import DTO.Banco;
+import Entidades.Banco;
 
 public class Main {
     public static void main(String[] args) {
