@@ -84,7 +84,7 @@ public class frmRegistroVIEW extends JDialog {
 
 
         ClienteDTO cliente = new ClienteDTO();
-        cliente.setNome_Client(name);
+        cliente.setNomeClient(name);
         cliente.setCpfCliente(cpf);
         cliente.setDataNascimentoCliente(birthDate);
         cliente.setEnderecoCliente(endereco);

@@ -22,7 +22,7 @@ public class ClienteDTO {
         return nomeCliente;
     }
 
-    public void setNome_Client(String nomeClient) {
+    public void setNomeClient(String nomeClient) {
         this.nomeCliente = nomeClient;
     }
 
