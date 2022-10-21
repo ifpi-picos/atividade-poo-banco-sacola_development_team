@@ -39,7 +39,7 @@ public class ClienteDAO extends ClienteDTO {
             pstmt.setString(1, clienteDTO.getCpfCliente());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                setId_Cliente(rs.getInt("idClientes"));
+                setIdCliente(rs.getInt("idClientes"));
             }
 
             // Inserindo dados na tabela usuários

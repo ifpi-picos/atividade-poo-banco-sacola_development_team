@@ -16,7 +16,7 @@ public class ContaCorrente extends ContaDTO {
     @Override
     public double sacar(double valor) {
         if (valor > this.getSaldoConta()) {
-            this.setSaldoConta(this.getSaldo_Conta() - valor);
+            this.setSaldoConta(this.getSaldoConta() - valor);
             JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente!");

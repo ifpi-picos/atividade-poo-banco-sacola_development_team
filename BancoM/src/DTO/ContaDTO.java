@@ -30,7 +30,7 @@ public class ContaDTO {
     }
 
     public void setIdConta(int idConta) {
-        this.id_Conta = idConta;
+        this.idConta = idConta;
     }
 
     public int getNumConta() {
