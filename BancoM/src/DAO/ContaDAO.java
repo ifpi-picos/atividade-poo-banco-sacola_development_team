@@ -24,7 +24,7 @@ public class ContaDAO extends Conta {
     }
 
     public void cadastrarConta(int codCliente) {
-        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipodaConta, codCliente) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipo_da_Conta, cod_Cliente) values (?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
         // Gerando dados da conta

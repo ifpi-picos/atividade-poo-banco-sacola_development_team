@@ -17,10 +17,10 @@ public class ClienteDAO extends Cliente {
 
     public void cadastrarCliente(Cliente cliente) {
         // Conexão com o banco de dados
-        String sql = "INSERT INTO clientes (nomeCliente, cpfCliente, dataNascimento) values (?, ?, ?)";
-        String sql2 = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, codCliente) values (?, ?, ?)";
-        String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, codCliente) values (?, ?, ?, ?, ?, ?)";
-        String sql4 = "select idClientes from clientes where cpfCliente = ?";
+        String sql = "INSERT INTO clientes (nome_Cliente, cpf_Cliente, data_Nascimento) values (?, ?, ?)";
+        String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario, cod_Cliente) values (?, ?, ?)";
+        String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?)";
+        String sql4 = "select id_Clientes from clientes where cpf_Cliente = ?";
         String sql5 = "INSERT INTO contas (numConta, agenciaConta, saldoConta, tipodaConta, codCliente) values (?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
@@ -39,7 +39,7 @@ public class ClienteDAO extends Cliente {
             pstmt.setString(1, cliente.getCpfCliente());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                setIdCliente(rs.getInt("idClientes"));
+                setIdCliente(rs.getInt("id_Clientes"));
             }
 
             // Inserindo dados na tabela usuários
@@ -72,6 +72,12 @@ public class ClienteDAO extends Cliente {
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 
         } catch (SQLException erro) {
+            if (erro.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "CPF ou Apelido já cadastrado!");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente!");
+            }
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + erro.getMessage());
         }
     }

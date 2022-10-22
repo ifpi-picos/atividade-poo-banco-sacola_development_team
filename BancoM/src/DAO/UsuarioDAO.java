@@ -16,7 +16,7 @@ public class UsuarioDAO {
 
         try {
 
-            String sql = "Select * from usuarios where nomeusuario = ? and senhausuario = ?";
+            String sql = "Select * from usuarios where nome_usuario = ? and senha_usuario = ?";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, objUsuario.getNomeUsuario());
             pstm.setString(2, objUsuario.getSenhaUsuario());

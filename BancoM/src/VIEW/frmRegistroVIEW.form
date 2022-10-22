@@ -147,7 +147,7 @@
         </constraints>
         <properties>
           <font name="Unispace" size="18" style="1"/>
-          <text value="Novo usuario:"/>
+          <text value="APELIDO"/>
         </properties>
       </component>
       <component id="5cc60" class="javax.swing.JTextField" binding="txtNovoUsuario">
