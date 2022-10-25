@@ -2,7 +2,6 @@ package VIEW;
 
 import DAO.ContaDAO;
 import Entidades.ContaCorrente;
-import Entidades.ContaPoupanca;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +14,7 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
     private JButton btnDepositar;
     private JButton btnTransferir;
     private JButton MOSTRARDADOSDACONTAButton;
+    private JButton btnEncerrar;
 
     ContaDAO contaDAO = new ContaDAO();
 
@@ -48,6 +48,12 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarDados();
+            }
+        });
+        btnEncerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }

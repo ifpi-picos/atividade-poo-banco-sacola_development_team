@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="VIEW.frmPrincipalCorrenteVIEW">
-  <grid id="27dc6" binding="painelPrincipal" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="painelPrincipal" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="645" height="823"/>
@@ -38,14 +38,14 @@
       <vspacer id="6f4e3">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="20" height="20"/>
+            <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
       <vspacer id="8f1e">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="20" height="20"/>
+            <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
@@ -70,7 +70,23 @@
       <vspacer id="c8bb3">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="20" height="20"/>
+            <preferred-size width="10" height="10"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <component id="c8e0d" class="javax.swing.JButton" binding="btnEncerrar">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Unispace" size="16" style="1"/>
+          <text value="ENCERRAR"/>
+        </properties>
+      </component>
+      <vspacer id="a0e5f">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>

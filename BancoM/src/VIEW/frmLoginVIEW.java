@@ -80,8 +80,6 @@ public class frmLoginVIEW extends JDialog {
                     logar();
                 }
                 contaDAO.puxarConta(numConta);
-                JOptionPane.showMessageDialog(null, numConta);
-                JOptionPane.showMessageDialog(null, contaDAO.tipoContaDAO);
 
                 // Se o usuário existir, abre o formulário principal
                 if (contaDAO.tipoContaDAO == 1) {
