@@ -1,5 +1,6 @@
 package VIEW;
 
+import DAO.ContaDAO;
 import DAO.UsuarioDAO;
 import Entidades.Usuario;
 
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 
 
 public class frmLoginVIEW extends JDialog {
+    protected static String usuario;
+    protected static int numConta;
     private JPanel loginPanel;
     private JTextField txtUsuario;
     private JTextField txtSenha;
@@ -49,10 +52,12 @@ public class frmLoginVIEW extends JDialog {
 
     }
 
+
     private void logar() {
         try {
 
             String nomeusuario = txtUsuario.getText();
+            usuario = nomeusuario;
             String senhausuario = txtSenha.getText();
 
             Usuario objUsuario = new Usuario();
@@ -62,11 +67,35 @@ public class frmLoginVIEW extends JDialog {
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();
             ResultSet rsUsuarioDAO = objUsuarioDAO.autenticarUsuario(objUsuario);
 
-            if (rsUsuarioDAO.next()) {
-                // Se o usuário existir, abre o formulário principal
-                frmPrincipalVIEW objfrmPrincipalVIEW = new frmPrincipalVIEW();
-                objfrmPrincipalVIEW.setVisible(true);
 
+
+            if (rsUsuarioDAO.next()) {
+                ContaDAO contaDAO = new ContaDAO();
+
+                int opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Selecionar conta","Abrir nova conta"}, "Login");
+                if (opcao == 0) {
+                    numConta = contaDAO.selecionarConta(nomeusuario);
+                } else if (opcao == 1) {
+                    contaDAO.abrirNovaConta(nomeusuario);
+                    logar();
+                }
+                contaDAO.puxarConta(numConta);
+                JOptionPane.showMessageDialog(null, numConta);
+                JOptionPane.showMessageDialog(null, contaDAO.tipoContaDAO);
+
+                // Se o usuário existir, abre o formulário principal
+                if (contaDAO.tipoContaDAO == 1) {
+                    frmPrincipalCorrenteVIEW objfrmPrincipalCorrenteVIEW = new frmPrincipalCorrenteVIEW();
+                    objfrmPrincipalCorrenteVIEW.setVisible(true);
+
+                } else if (contaDAO.tipoContaDAO == 2) {
+                    frmPrincipalPoupancaVIEW objfrmPrincipalPoupancaVIEW = new frmPrincipalPoupancaVIEW();
+                    objfrmPrincipalPoupancaVIEW.setVisible(true);
+
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+                }
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");

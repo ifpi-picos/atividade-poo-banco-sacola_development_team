@@ -5,22 +5,22 @@ public class Conta {
     private int numConta;
     private String agenciaConta;
     private double saldoConta;
+    private int tipoConta;
+
 
 
     // Metodos
-    public boolean depositar(double valor) {
+    public void depositar(double valor, int numConta) {
         if (valor > 0) {
             this.setSaldoConta(this.getSaldoConta() + valor);
-            return true;
         }
-        return false;
     }
 
-    public double sacar(double valor) {
-        return this.saldoConta -= valor;
+    public void sacar(double valor, int numConta) {
+        this.saldoConta -= valor;
     }
 
-    public void transferir(double valor) {
+    public void transferir(double valor, int numeroConta, int numConta) {
         this.saldoConta -= valor;
     }
 
@@ -55,5 +55,13 @@ public class Conta {
 
     public void setSaldoConta(double saldoConta) {
         this.saldoConta = saldoConta;
+    }
+
+    public int getTipoConta() {
+        return tipoConta;
+    }
+
+    public void setTipoConta(int tipoConta) {
+        this.tipoConta = tipoConta;
     }
 }
