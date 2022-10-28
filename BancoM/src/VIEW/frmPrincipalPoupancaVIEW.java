@@ -1,5 +1,6 @@
 package VIEW;
 
+import DAO.ContaDAO;
 import Entidades.ContaPoupanca;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ public class frmPrincipalPoupancaVIEW extends JDialog{
     private JButton btnTransferencia;
     private JButton btnEncerrar;
     private JPanel painelPrincipal;
+    private JButton btnMostrarDadosConta;
 
     public frmPrincipalPoupancaVIEW() {
         setContentPane(painelPrincipal);
@@ -31,7 +33,19 @@ public class frmPrincipalPoupancaVIEW extends JDialog{
                 dispose();
             }
         });
+        btnMostrarDadosConta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarDados();
+            }
+        });
     }
+
+    private void mostrarDados() {
+        ContaDAO contaDAO = new ContaDAO();
+        contaDAO.exibirInformacoesDaConta(frmLoginVIEW.numConta);
+    }
+
     private void transferir() {
         double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));
         int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da conta: "));

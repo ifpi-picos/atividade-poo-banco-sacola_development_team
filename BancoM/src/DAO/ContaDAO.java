@@ -77,17 +77,9 @@ public class ContaDAO extends Conta {
     }
 
     public void puxarConta(int numConta) {
-//        String sql1 = "SELECT cod_Cliente FROM contas WHERE numConta = ?";
         String sql2 = "SELECT * FROM contas WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
         try {
-//            pstmt = conn.prepareStatement(sql1);
-//            pstmt.setInt(1, numConta);
-//            rs = pstmt.executeQuery();
-//            rs.next();
-//            int codCliente = rs.getInt("cod_Cliente");
-//            pstmt.close();
-//            rs.close();
 
             pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, numConta);
@@ -116,6 +108,22 @@ public class ContaDAO extends Conta {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao puxar conta: " + e.getMessage());
+        }
+    }
+
+    public void exibirInformacoesDaConta(int numConta) {
+        puxarConta(numConta);
+        String s = contaCorrente.getTipoConta() == 1 ? "Conta Corrente" : "Conta Poupança";
+        if (tipoContaDAO == 1) {
+            JOptionPane.showMessageDialog(null, "Número da conta: " + contaCorrente.getNumConta() +
+                    "\nAgência: " + contaCorrente.getAgenciaConta() +
+                    "\nSaldo: R$ " + contaCorrente.getSaldoConta() +
+                    "\nTipo da conta: " + s);
+        } else {
+            JOptionPane.showMessageDialog(null, "Número da conta: " + contaPoupanca.getNumConta() +
+                    "\nAgência: " + contaPoupanca.getAgenciaConta() +
+                    "\nSaldo: " + contaPoupanca.getSaldoConta() +
+                    "\nTipo da conta: " + s);
         }
     }
     public int selecionarConta(String nomeUsuario) {

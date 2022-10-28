@@ -2,6 +2,7 @@ package VIEW;
 
 import DAO.ContaDAO;
 import Entidades.ContaCorrente;
+import Entidades.ContaPoupanca;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,11 +60,8 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
     }
 
     private void mostrarDados() {
-        contaDAO.puxarConta(frmLoginVIEW.numConta);
-        JOptionPane.showMessageDialog(null,
-                "Saldo: " + contaDAO.getSaldoConta() + "\n" +
-                "Número da conta: " + contaDAO.getNumConta() + "\n" +
-                "Agência: " + contaDAO.getAgenciaConta());
+        ContaDAO contaDAO = new ContaDAO();
+        contaDAO.exibirInformacoesDaConta(frmLoginVIEW.numConta);
     }
 
 

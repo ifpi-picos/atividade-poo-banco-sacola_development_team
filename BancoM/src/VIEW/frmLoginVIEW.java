@@ -6,8 +6,6 @@ import Entidades.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,25 +30,15 @@ public class frmLoginVIEW extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logar();
-            }
-        });
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        btnOk.addActionListener(e -> logar());
+        btnCancel.addActionListener(e -> dispose());
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        frmLoginVIEW login = new frmLoginVIEW(null);
-
-    }
+//    public static void main(String[] args) {
+//        frmLoginVIEW login = new frmLoginVIEW(null);
+//
+//    }
 
 
     private void logar() {

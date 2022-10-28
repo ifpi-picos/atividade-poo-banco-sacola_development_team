@@ -1,5 +1,9 @@
 package Entidades;
 
+import DAO.ContaDAO;
+
+import javax.swing.*;
+
 public class Conta {
     private int idConta;
     private int numConta;
@@ -22,6 +26,8 @@ public class Conta {
 
     public void transferir(double valor, int numeroConta, int numConta) {
         this.saldoConta -= valor;
+    }
+    public void exibirInformacoesDaConta(int numConta) {
     }
 
     // Getters e Setters
