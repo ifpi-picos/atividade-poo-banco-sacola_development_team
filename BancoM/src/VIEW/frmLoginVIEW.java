@@ -32,11 +32,8 @@ public class frmLoginVIEW extends JDialog {
 
         btnOk.addActionListener(e -> logar());
         btnCancel.addActionListener(e -> dispose());
-        setVisible(true);
+
     }
-
-
-
 
     private void logar() {
         try {
@@ -60,6 +57,7 @@ public class frmLoginVIEW extends JDialog {
                 int opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Selecionar conta","Abrir nova conta"}, "Login");
                 if (opcao == 0) {
                     numConta = contaDAO.selecionarConta(nomeusuario);
+                    dispose();
                 } else if (opcao == 1) {
                     contaDAO.abrirNovaConta(nomeusuario);
                     logar();

@@ -35,7 +35,6 @@ public class frmRegistroVIEW extends JDialog {
 
         btnRegistrar.addActionListener(e -> registerUser());
         btnCancelar.addActionListener(e -> dispose());
-        setVisible(true);
     }
 
     private void registerUser() {

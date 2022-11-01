@@ -28,7 +28,6 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
         BtnSacar.addActionListener(e -> sacar());
         btnDepositar.addActionListener(e -> depositar());
         btnTransferir.addActionListener(e -> transferir());
-
         MOSTRARDADOSDACONTAButton.addActionListener(e -> mostrarDados());
         btnEncerrar.addActionListener(e -> dispose());
     }
