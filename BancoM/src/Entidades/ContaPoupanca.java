@@ -5,7 +5,6 @@ import DAO.ContaDAO;
 import javax.swing.*;
 
 public class ContaPoupanca extends Conta {
-    private double taxaJuros = 0.05;
     private double rendimento = 0.1;
 
 
@@ -41,12 +40,10 @@ public class ContaPoupanca extends Conta {
     }
 
     public double getTaxaJuros() {
-        return taxaJuros;
+        return 0.05;
     }
 
-    public void setTaxaJuros(double taxaJuros) {
-        this.taxaJuros = taxaJuros;
-    }
+
 
     public double getRendimento() {
         return rendimento;

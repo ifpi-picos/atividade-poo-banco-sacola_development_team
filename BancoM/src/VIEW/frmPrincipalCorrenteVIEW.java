@@ -2,12 +2,11 @@ package VIEW;
 
 import DAO.ContaDAO;
 import Entidades.ContaCorrente;
-import Entidades.ContaPoupanca;
+
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class frmPrincipalCorrenteVIEW extends JFrame {
     private JPanel painelPrincipal;
@@ -26,37 +25,12 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
         setVisible(true);
 
         dispose();
-        BtnSacar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sacar();
-            }
-        });
-        btnDepositar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                depositar();
-            }
-        });
-        btnTransferir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                transferir();
-            }
-        });
+        BtnSacar.addActionListener(e -> sacar());
+        btnDepositar.addActionListener(e -> depositar());
+        btnTransferir.addActionListener(e -> transferir());
 
-        MOSTRARDADOSDACONTAButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mostrarDados();
-            }
-        });
-        btnEncerrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        MOSTRARDADOSDACONTAButton.addActionListener(e -> mostrarDados());
+        btnEncerrar.addActionListener(e -> dispose());
     }
 
     private void mostrarDados() {
@@ -72,18 +46,15 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
                             "será cobrado uma taxa de 3% por transferência.");
             int opcao = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
             switch (opcao) {
-                case 0:
+                case 0 -> {
                     double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));
                     int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da conta: "));
                     ContaCorrente contaCorrente = new ContaCorrente();
                     contaCorrente.transferir(valorTransferencia, numeroConta, frmLoginVIEW.numConta);
-                    break;
-                case 1:
-                    JOptionPane.showMessageDialog(null, "Volte amanhã para realizar mais transferências sem taxas!");
-                    break;
-                case 2:
-                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                    break;
+                }
+                case 1 ->
+                        JOptionPane.showMessageDialog(null, "Volte amanhã para realizar mais transferências sem taxas!");
+                case 2 -> JOptionPane.showMessageDialog(null, "Operação cancelada!");
             }
         } else {
             double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));

@@ -1,11 +1,11 @@
 package Entidades;
 
-import DAO.ContaDAO;
 
-import javax.swing.*;
+
+
 
 public class Conta {
-    private int idConta;
+
     private int numConta;
     private String agenciaConta;
     private double saldoConta;
@@ -31,13 +31,9 @@ public class Conta {
     }
 
     // Getters e Setters
-    public int getIdConta() {
-        return idConta;
-    }
 
-    public void setIdConta(int idConta) {
-        this.idConta = idConta;
-    }
+
+
 
     public int getNumConta() {
         return numConta;

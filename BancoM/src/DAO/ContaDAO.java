@@ -275,19 +275,16 @@ public class ContaDAO extends Conta {
             if (tipoContaDestino == 1) {
                 pstmt = conn.prepareStatement(sql3);
                 pstmt.setDouble(1, saldoContaDestino + valor);
-                pstmt.setInt(2, numContaDestino);
-                pstmt.execute();
-                pstmt.close();
             } else {
                 if (valor > 1000) {
                     contaPoupanca.setRendimento(0.15);
                 }
                 pstmt = conn.prepareStatement(sql3);
                 pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento())));
-                pstmt.setInt(2, numContaDestino);
-                pstmt.execute();
-                pstmt.close();
             }
+            pstmt.setInt(2, numContaDestino);
+            pstmt.execute();
+            pstmt.close();
             puxarSaldoConta(contaCorrente.getNumConta());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
@@ -327,9 +324,6 @@ public class ContaDAO extends Conta {
             if (tipoContaDestino == 1) {
                 pstmt = conn.prepareStatement(sql3);
                 pstmt.setDouble(1, saldoContaDestino + valor - (valor * contaPoupanca.getTaxaJuros()));
-                pstmt.setInt(2, numContaDestino);
-                pstmt.execute();
-                pstmt.close();
             } else {
                 if (valor > 1000) {
                     contaPoupanca.setRendimento(0.15);
@@ -338,10 +332,10 @@ public class ContaDAO extends Conta {
                 pstmt = conn.prepareStatement(sql3);
                 pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento()))
                         - (valor * contaPoupanca.getTaxaJuros()));
-                pstmt.setInt(2, numContaDestino);
-                pstmt.execute();
-                pstmt.close();
             }
+            pstmt.setInt(2, numContaDestino);
+            pstmt.execute();
+            pstmt.close();
             puxarSaldoConta(contaPoupanca.getNumConta());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());

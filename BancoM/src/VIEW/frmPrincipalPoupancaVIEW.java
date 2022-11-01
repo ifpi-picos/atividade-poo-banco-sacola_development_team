@@ -5,8 +5,7 @@ import Entidades.ContaPoupanca;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class frmPrincipalPoupancaVIEW extends JDialog{
     private JButton btnTransferencia;
@@ -21,24 +20,9 @@ public class frmPrincipalPoupancaVIEW extends JDialog{
         setVisible(true);
 
 
-        btnTransferencia.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                transferir();
-            }
-        });
-        btnEncerrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-        btnMostrarDadosConta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mostrarDados();
-            }
-        });
+        btnTransferencia.addActionListener(e -> transferir());
+        btnEncerrar.addActionListener(e -> dispose());
+        btnMostrarDadosConta.addActionListener(e -> mostrarDados());
     }
 
     private void mostrarDados() {

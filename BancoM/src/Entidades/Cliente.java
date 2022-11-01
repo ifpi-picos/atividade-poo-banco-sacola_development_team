@@ -7,7 +7,7 @@ public class Cliente {
     private String cpfCliente;
     private String dataNascimentoCliente;
     private Endereco enderecoCliente;
-    private Conta contaCliente;
+
     private Usuario usuarioCliente;
 
 // Getters e Setters
@@ -50,13 +50,9 @@ public class Cliente {
         this.enderecoCliente = enderecoCliente;
     }
 
-    public Conta getContaCliente() {
-        return contaCliente;
-    }
 
-    public void setContaCliente(Conta contaCliente) {
-        this.contaCliente = contaCliente;
-    }
+
+
 
     public Usuario getUsuarioCliente() {
         return usuarioCliente;

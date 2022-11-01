@@ -7,8 +7,6 @@ import Entidades.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class frmRegistroVIEW extends JDialog {
     private JTextField txtNome;
@@ -35,18 +33,8 @@ public class frmRegistroVIEW extends JDialog {
         setLocationRelativeTo(parent);
 
 
-        btnRegistrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                registerUser();
-            }
-        });
-        btnCancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        btnRegistrar.addActionListener(e -> registerUser());
+        btnCancelar.addActionListener(e -> dispose());
         setVisible(true);
     }
 
@@ -97,7 +85,5 @@ public class frmRegistroVIEW extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        frmRegistroVIEW registry = new frmRegistroVIEW(null);
-    }
+
 }

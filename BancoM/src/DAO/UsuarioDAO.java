@@ -21,8 +21,8 @@ public class UsuarioDAO {
             pstm.setString(1, objUsuario.getNomeUsuario());
             pstm.setString(2, objUsuario.getSenhaUsuario());
 
-            ResultSet rs = pstm.executeQuery();
-            return rs;
+
+            return pstm.executeQuery();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "UsuarioDAO - Erro ao autenticar usuário: "

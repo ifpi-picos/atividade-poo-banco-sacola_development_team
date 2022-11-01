@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
-    private int contadorTransferencia;
+
 
     @Override
     public void depositar(double valor, int numConta) {

@@ -7,13 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ClienteDAO extends Cliente {
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;
-    ArrayList<Cliente> lista = new ArrayList<>();
+
 
     public void cadastrarCliente(Cliente cliente) {
         // Conexão com o banco de dados
@@ -21,7 +20,7 @@ public class ClienteDAO extends Cliente {
         String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario, cod_Cliente) values (?, ?, ?)";
         String sql3 = "INSERT INTO endereco (logradouro, numero, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?)";
         String sql4 = "select id_Clientes from clientes where cpf_Cliente = ?";
-        String sql5 = "INSERT INTO contas (numConta, agenciaConta, saldoConta, tipodaConta, codCliente) values (?, ?, ?, ?, ?)";
+
         conn = new ConexaoDAO().conectarBD();
 
         try {
@@ -54,11 +53,11 @@ public class ClienteDAO extends Cliente {
 
             // Inserindo dados na tabela endereços
             pstmt = conn.prepareStatement(sql3);
-            pstmt.setString(1, cliente.getEnderecoCliente().getLogradouro());
-            pstmt.setInt(2, cliente.getEnderecoCliente().getNumero());
-            pstmt.setString(3, cliente.getEnderecoCliente().getBairro());
-            pstmt.setString(4, cliente.getEnderecoCliente().getCidade());
-            pstmt.setString(5, cliente.getEnderecoCliente().getUf());
+            pstmt.setString(1, cliente.getEnderecoCliente().logradouro());
+            pstmt.setInt(2, cliente.getEnderecoCliente().numero());
+            pstmt.setString(3, cliente.getEnderecoCliente().bairro());
+            pstmt.setString(4, cliente.getEnderecoCliente().cidade());
+            pstmt.setString(5, cliente.getEnderecoCliente().uf());
             pstmt.setInt(6, getIdCliente());
 
             pstmt.execute();

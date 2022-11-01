@@ -35,10 +35,7 @@ public class frmLoginVIEW extends JDialog {
         setVisible(true);
     }
 
-//    public static void main(String[] args) {
-//        frmLoginVIEW login = new frmLoginVIEW(null);
-//
-//    }
+
 
 
     private void logar() {

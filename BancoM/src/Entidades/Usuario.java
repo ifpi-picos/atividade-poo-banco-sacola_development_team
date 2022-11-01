@@ -1,19 +1,13 @@
 package Entidades;
 
 public class Usuario {
-    private int idUsuario;
+
     private String nomeUsuario, senhaUsuario;
 
 
 
     // Getters e Setters
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public String getNomeUsuario() {
         return nomeUsuario;
