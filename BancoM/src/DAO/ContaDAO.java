@@ -19,6 +19,8 @@ public class ContaDAO extends Conta {
     ResultSet rs;
     Random random = new Random();
     public int tipoContaDAO;
+    public static int contadorTransferencia = 1;
+
     ContaCorrente contaCorrente = new ContaCorrente();
     ContaPoupanca contaPoupanca = new ContaPoupanca();
     ArrayList<Integer> contas = new ArrayList<>();
@@ -302,7 +304,7 @@ public class ContaDAO extends Conta {
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql1);
-            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor + (valor * contaPoupanca.getTaxaJuros()));
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor);
             pstmt.setInt(2, contaPoupanca.getNumConta());
             pstmt.execute();
             pstmt.close();
@@ -324,7 +326,7 @@ public class ContaDAO extends Conta {
 
             if (tipoContaDestino == 1) {
                 pstmt = conn.prepareStatement(sql3);
-                pstmt.setDouble(1, saldoContaDestino + valor);
+                pstmt.setDouble(1, saldoContaDestino + valor - (valor * contaPoupanca.getTaxaJuros()));
                 pstmt.setInt(2, numContaDestino);
                 pstmt.execute();
                 pstmt.close();
@@ -334,7 +336,8 @@ public class ContaDAO extends Conta {
                 }
 
                 pstmt = conn.prepareStatement(sql3);
-                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento())));
+                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento()))
+                        - (valor * contaPoupanca.getTaxaJuros()));
                 pstmt.setInt(2, numContaDestino);
                 pstmt.execute();
                 pstmt.close();
@@ -343,5 +346,11 @@ public class ContaDAO extends Conta {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
+    }
+    public void atualizarContadorTransferencia() {
+        contadorTransferencia++;
+    }
+    public int getContadorTransferencia() {
+        return contadorTransferencia;
     }
 }

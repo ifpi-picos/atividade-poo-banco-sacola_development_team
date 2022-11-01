@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class ContaCorrente extends Conta {
     private double chequeEspecial;
+    private int contadorTransferencia;
 
     @Override
     public void depositar(double valor, int numConta) {
@@ -108,7 +109,15 @@ public class ContaCorrente extends Conta {
         ContaDAO contaDAO = new ContaDAO();
         if (valor < contaDAO.puxarSaldoConta(numConta)) {
             contaDAO.puxarConta(numConta);
-            contaDAO.transferenciaContaCorrente(valor, numeroConta);
+            if (contaDAO.getContadorTransferencia() > 2) {
+                JOptionPane.showMessageDialog(null, "Você atingiu o limite de 2 transferências por dia! A partir desse momento, será cobrado uma taxa de 3% por transferência.");
+                contaDAO.transferenciaContaCorrente(valor - (valor * 0.03), numeroConta);
+            } else {
+                contaDAO.transferenciaContaCorrente(valor, numeroConta);
+            }
+            contaDAO.atualizarContadorTransferencia();
+            JOptionPane.showMessageDialog(null, contaDAO.getContadorTransferencia());
+            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso!");
 
             int opcao = JOptionPane.showOptionDialog(null,
                     "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,

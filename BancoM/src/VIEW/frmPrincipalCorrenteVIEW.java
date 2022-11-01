@@ -66,10 +66,31 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
 
 
     private void transferir() {
-        double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));
-        int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da conta: "));
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.transferir(valorTransferencia, numeroConta, frmLoginVIEW.numConta);
+        if (contaDAO.getContadorTransferencia() > 2) {
+            JOptionPane.showMessageDialog(null,
+                    "Você atingiu o limite de 2 transferências por dia! A partir desse momento, " +
+                            "será cobrado uma taxa de 3% por transferência.");
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
+            switch (opcao) {
+                case 0:
+                    double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));
+                    int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da conta: "));
+                    ContaCorrente contaCorrente = new ContaCorrente();
+                    contaCorrente.transferir(valorTransferencia, numeroConta, frmLoginVIEW.numConta);
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(null, "Volte amanhã para realizar mais transferências sem taxas!");
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+            }
+        } else {
+            double valorTransferencia = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da transferência: "));
+            int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da conta: "));
+            ContaCorrente contaCorrente = new ContaCorrente();
+            contaCorrente.transferir(valorTransferencia, numeroConta, frmLoginVIEW.numConta);
+        }
     }
 
     private void depositar() {
