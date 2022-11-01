@@ -5,22 +5,54 @@ import DAO.ContaDAO;
 import javax.swing.*;
 
 public class ContaPoupanca extends Conta {
-    private double taxaJuros;
+    private double taxaJuros = 0.05;
+    private double rendimento = 0.1;
 
-    public double rendimento(double taxaJuros) {
-        return this.getSaldoConta() * taxaJuros;
-    }
 
     @Override
     public void transferir(double valor, int numeroConta, int numConta) {
-        if (valor > this.getSaldoConta()) {
-            ContaDAO contaDAO = new ContaDAO();
+        ContaDAO contaDAO = new ContaDAO();
+        if (valor < contaDAO.puxarSaldoConta(numConta)) {
             contaDAO.puxarConta(numConta);
             contaDAO.transferenciaContaPoupanca(valor, numeroConta);
 
             JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso!");
+            int opcao = JOptionPane.showOptionDialog(null,
+                    "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, new String[]{"Sim","Não"}, "Comprovante");
+            if (opcao == 0){
+                opcao = JOptionPane.showOptionDialog(null,
+                        "Por qual via deseja receber?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                        null, new String[]{"SMS","EMAIL"}, "Comprovante");
+                switch (opcao) {
+                    case 0 -> {
+                        Sms sms = new Sms();
+                        sms.enviarNotificacao("Transferência", valor);
+                    }
+                    case 1 -> {
+                        Email email = new Email();
+                        email.enviarNotificacao("Transferência", valor);
+                    }
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
         }
+    }
+
+    public double getTaxaJuros() {
+        return taxaJuros;
+    }
+
+    public void setTaxaJuros(double taxaJuros) {
+        this.taxaJuros = taxaJuros;
+    }
+
+    public double getRendimento() {
+        return rendimento;
+    }
+
+    public void setRendimento(double rendimento) {
+        this.rendimento = rendimento;
     }
 }

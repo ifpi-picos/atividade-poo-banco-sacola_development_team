@@ -32,14 +32,20 @@ public class ContaDAO extends Conta {
     }
 
     public void cadastrarConta(int codCliente) {
-        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipo_da_Conta, cod_Cliente) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contas (numConta, agenciaConta, saldoDaConta, tipo_da_Conta, cod_Cliente, chequeEspecial) values (?, ?, ?, ?, ?, ?)";
         conn = new ConexaoDAO().conectarBD();
 
         // Gerando dados da conta
-        int numConta = random.nextInt(999999);
+        int numConta;
+        do {
+            numConta = random.nextInt(999999) + 1;
+        } while (numConta < 100000);
+
+        numConta = random.nextInt(999999) + 1;
         String agenciaConta = "0001-1";
         double saldoConta = 0;
         int tipoConta = lerTipoConta();
+        double chequeEspecial = 500;
 
 
 
@@ -50,6 +56,7 @@ public class ContaDAO extends Conta {
             pstmt.setDouble(3, saldoConta);
             pstmt.setInt(4, tipoConta);
             pstmt.setInt(5, codCliente);
+            pstmt.setDouble(6, chequeEspecial);
 
 
             pstmt.execute();
@@ -90,6 +97,7 @@ public class ContaDAO extends Conta {
             double saldoConta = rs.getDouble("saldoDaConta");
             int tipoConta = rs.getInt("tipo_da_Conta");
             tipoContaDAO = tipoConta;
+            double chequeEspecial = rs.getDouble("chequeEspecial");
             pstmt.close();
             rs.close();
 
@@ -98,6 +106,7 @@ public class ContaDAO extends Conta {
                 contaCorrente.setAgenciaConta(agenciaConta);
                 contaCorrente.setSaldoConta(saldoConta);
                 contaCorrente.setTipoConta(tipoConta);
+                contaCorrente.setChequeEspecial(chequeEspecial);
             } else {
                 contaPoupanca.setNumConta(numConta);
                 contaPoupanca.setAgenciaConta(agenciaConta);
@@ -110,7 +119,26 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao puxar conta: " + e.getMessage());
         }
     }
+    public double puxarSaldoConta(int numConta) {
+        String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
+        conn = new ConexaoDAO().conectarBD();
+        try {
 
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, numConta);
+            rs = pstmt.executeQuery();
+            rs.next();
+            double saldoConta = rs.getDouble("saldoDaConta");
+            pstmt.close();
+            rs.close();
+
+            return saldoConta;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao puxar saldo da conta: " + e.getMessage());
+        }
+        return 0;
+    }
     public void exibirInformacoesDaConta(int numConta) {
         puxarConta(numConta);
         String s = contaCorrente.getTipoConta() == 1 ? "Conta Corrente" : "Conta Poupança";
@@ -181,10 +209,26 @@ public class ContaDAO extends Conta {
             pstmt.setInt(2, contaCorrente.getNumConta());
             pstmt.execute();
             pstmt.close();
+
+            puxarSaldoConta(contaCorrente.getNumConta());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao sacar: " + e.getMessage());
         }
     }
+    public void atualizarChequeEspecial(double valor) {
+        String sql = "UPDATE contas SET chequeEspecial = ? WHERE numConta = ?";
+        conn = new ConexaoDAO().conectarBD();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, contaCorrente.getChequeEspecial() + valor);
+            pstmt.setInt(2, contaCorrente.getNumConta());
+            pstmt.execute();
+            pstmt.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar cheque especial: " + e.getMessage());
+        }
+    }
+
     public void depositoConta(double valor) {
         String sql = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
@@ -202,6 +246,7 @@ public class ContaDAO extends Conta {
         String sql1 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
         String sql3 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
+        String sql4 = "Select tipo_da_Conta FROM contas WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql1);
@@ -215,14 +260,33 @@ public class ContaDAO extends Conta {
             rs = pstmt.executeQuery();
             rs.next();
             double saldoContaDestino = rs.getDouble("saldoDaConta");
-
-
-            pstmt = conn.prepareStatement(sql3);
-            pstmt.setDouble(1, saldoContaDestino + valor);
-            pstmt.setInt(2, numContaDestino);
-            pstmt.execute();
             pstmt.close();
 
+            pstmt = conn.prepareStatement(sql4);
+            pstmt.setInt(1, numContaDestino);
+            rs = pstmt.executeQuery();
+            rs.next();
+            int tipoContaDestino = rs.getInt("tipo_da_Conta");
+            pstmt.close();
+            rs.close();
+
+            if (tipoContaDestino == 1) {
+                pstmt = conn.prepareStatement(sql3);
+                pstmt.setDouble(1, saldoContaDestino + valor);
+                pstmt.setInt(2, numContaDestino);
+                pstmt.execute();
+                pstmt.close();
+            } else {
+                if (valor > 1000) {
+                    contaPoupanca.setRendimento(0.15);
+                }
+                pstmt = conn.prepareStatement(sql3);
+                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento())));
+                pstmt.setInt(2, numContaDestino);
+                pstmt.execute();
+                pstmt.close();
+            }
+            puxarSaldoConta(contaCorrente.getNumConta());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
@@ -233,11 +297,12 @@ public class ContaDAO extends Conta {
         String sql1 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
         String sql3 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
+        String sql4 = "Select tipo_da_Conta FROM contas WHERE numConta = ?";
 
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql1);
-            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor);
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor + (valor * contaPoupanca.getTaxaJuros()));
             pstmt.setInt(2, contaPoupanca.getNumConta());
             pstmt.execute();
             pstmt.close();
@@ -249,11 +314,32 @@ public class ContaDAO extends Conta {
             double saldoContaDestino = rs.getDouble("saldoDaConta");
 
 
-            pstmt = conn.prepareStatement(sql3);
-            pstmt.setDouble(1, saldoContaDestino + valor);
-            pstmt.setInt(2, numContaDestino);
-            pstmt.execute();
+            pstmt = conn.prepareStatement(sql4);
+            pstmt.setInt(1, numContaDestino);
+            rs = pstmt.executeQuery();
+            rs.next();
+            int tipoContaDestino = rs.getInt("tipo_da_Conta");
             pstmt.close();
+            rs.close();
+
+            if (tipoContaDestino == 1) {
+                pstmt = conn.prepareStatement(sql3);
+                pstmt.setDouble(1, saldoContaDestino + valor);
+                pstmt.setInt(2, numContaDestino);
+                pstmt.execute();
+                pstmt.close();
+            } else {
+                if (valor > 1000) {
+                    contaPoupanca.setRendimento(0.15);
+                }
+
+                pstmt = conn.prepareStatement(sql3);
+                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento())));
+                pstmt.setInt(2, numContaDestino);
+                pstmt.execute();
+                pstmt.close();
+            }
+            puxarSaldoConta(contaPoupanca.getNumConta());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
