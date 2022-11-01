@@ -2,6 +2,7 @@ package Entidades;
 
 import DAO.ContaDAO;
 
+
 import javax.swing.*;
 
 public class ContaCorrente extends Conta {
@@ -14,6 +15,25 @@ public class ContaCorrente extends Conta {
             contaDAO.puxarConta(numConta);
             contaDAO.depositoConta(valor);
             JOptionPane.showMessageDialog(null, "Depósito realizado com sucesso!");
+
+            int opcao = JOptionPane.showOptionDialog(null,
+                    "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, new String[]{"Sim","Não"}, "Comprovante");
+            if (opcao == 0){
+                opcao = JOptionPane.showOptionDialog(null,
+                        "Por qual via deseja receber?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                        null, new String[]{"SMS","EMAIL"}, "Comprovante");
+                switch (opcao) {
+                    case 0 -> {
+                        Sms sms = new Sms();
+                        sms.enviarNotificacao("Depósito", valor);
+                    }
+                    case 1 -> {
+                        Email email = new Email();
+                        email.enviarNotificacao("Depósito", valor);
+                    }
+                }
+            }
         }
     }
     @Override
