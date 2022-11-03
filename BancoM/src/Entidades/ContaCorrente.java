@@ -41,7 +41,7 @@ public class ContaCorrente extends Conta {
     public void sacar(double valor, int numConta) {
         ContaDAO contaDAO = new ContaDAO();
         int opcao;
-        if (valor < contaDAO.puxarSaldoConta(numConta)) {
+        if (valor <= contaDAO.puxarSaldoConta(numConta)) {
             contaDAO.puxarConta(numConta);
             contaDAO.saqueConta(valor);
 
@@ -77,7 +77,7 @@ public class ContaCorrente extends Conta {
                 if (contaDAO.puxarSaldoConta(numConta) <= 0) {
                     contaDAO.atualizarChequeEspecial(operacao);
                 } else {
-                    contaDAO.saqueConta(-(operacao));
+                    contaDAO.saqueConta(valor + operacao);
                     contaDAO.atualizarChequeEspecial(operacao);
                 }
                 JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
