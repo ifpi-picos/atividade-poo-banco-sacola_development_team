@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class frmPrincipalCorrenteVIEW extends JFrame {
+public class frmPrincipalCorrenteVIEW extends JDialog {
     private JPanel painelPrincipal;
     private JButton BtnSacar;
     private JButton btnDepositar;
@@ -20,11 +20,14 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
 
     ContaDAO contaDAO = new ContaDAO();
 
-    public frmPrincipalCorrenteVIEW() {
+    public frmPrincipalCorrenteVIEW(JFrame parent) {
+        super(parent);
         setContentPane(painelPrincipal);
         setMinimumSize(new Dimension(450, 474));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setModal(true);
+        setLocationRelativeTo(parent);
+
 
         dispose();
         txtNomeUsuario.setText(frmLoginVIEW.usuario);

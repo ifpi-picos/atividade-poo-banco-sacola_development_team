@@ -66,11 +66,11 @@ public class frmLoginVIEW extends JDialog {
 
                 // Se o usuário existir, abre o formulário principal
                 if (contaDAO.tipoContaDAO == 1) {
-                    frmPrincipalCorrenteVIEW objfrmPrincipalCorrenteVIEW = new frmPrincipalCorrenteVIEW();
+                    frmPrincipalCorrenteVIEW objfrmPrincipalCorrenteVIEW = new frmPrincipalCorrenteVIEW(null);
                     objfrmPrincipalCorrenteVIEW.setVisible(true);
 
                 } else if (contaDAO.tipoContaDAO == 2) {
-                    frmPrincipalPoupancaVIEW objfrmPrincipalPoupancaVIEW = new frmPrincipalPoupancaVIEW();
+                    frmPrincipalPoupancaVIEW objfrmPrincipalPoupancaVIEW = new frmPrincipalPoupancaVIEW(null);
                     objfrmPrincipalPoupancaVIEW.setVisible(true);
 
                 }

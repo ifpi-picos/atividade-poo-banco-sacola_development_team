@@ -24,8 +24,9 @@ public class frmRegistroVIEW extends JDialog {
     private JTextField txtCidade;
     private JTextField txtUF;
     private JTextField txtLogradouro;
-    private JFormattedTextField formattedTxtNumero;
+    private JFormattedTextField formattedTxtCep;
     private JPasswordField txtSenhaConfirma;
+    private JTextField txtNumero;
 
 
     public frmRegistroVIEW(JFrame parent) {
@@ -36,7 +37,7 @@ public class frmRegistroVIEW extends JDialog {
 
         setTitle("Criar conta");
         setContentPane(registerPanel);
-        setMinimumSize(new Dimension(768, 480));
+        setMinimumSize(new Dimension(480, 768));
         setModal(true);
         setLocationRelativeTo(parent);
 
@@ -63,7 +64,7 @@ public class frmRegistroVIEW extends JDialog {
         }
         try {
             MaskFormatter cep = new MaskFormatter("#####-###");
-            cep.install(formattedTxtNumero);
+            cep.install(formattedTxtCep);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -77,20 +78,25 @@ public class frmRegistroVIEW extends JDialog {
         String name = txtNome.getText();
         String cpf = formattedTxtCpf.getText();
         String birthDate = formattedTxtDataNascimento.getText();
-        String street = txtLogradouro.getText();
-        String number = formattedTxtNumero.getText();
+
+
 
         // Pegando dados do endereço
+        String street = txtLogradouro.getText();
+        String number = txtNumero.getText();
+        String cep = formattedTxtCep.getText();
         String neighborhood = txtBairro.getText();
         String city = txtCidade.getText();
         String uf = txtUF.getText();
+
+        // Pegando dados do usuário
         String username = txtNovoUsuario.getText();
         String password = String.valueOf(txtSenha.getPassword());
         String confirmPassword = String.valueOf(txtSenhaConfirma.getPassword());
 
         // Abrindo conta padrão para o cliente.
 
-        if (name.isEmpty() || cpf.isEmpty() || birthDate.isEmpty() || street.isEmpty() || number.isEmpty() || neighborhood.isEmpty() || city.isEmpty() || uf.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (name.isEmpty() || cpf.isEmpty() || birthDate.isEmpty() || street.isEmpty() || number.isEmpty() || cep.isEmpty() || neighborhood.isEmpty() || city.isEmpty() || uf.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
         }
         if (!password.equals(confirmPassword)) {
@@ -98,7 +104,7 @@ public class frmRegistroVIEW extends JDialog {
             return;
         }
         int numberInt = Integer.parseInt(number);
-        Endereco endereco = new Endereco(numberInt, street, neighborhood, city, uf);
+        Endereco endereco = new Endereco(numberInt, cep, street, neighborhood, city, uf);
         Usuario usuario = new Usuario();
         usuario.setNomeUsuario(username);
         usuario.setSenhaUsuario(password);
