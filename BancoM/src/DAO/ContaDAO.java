@@ -290,6 +290,14 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
     }
+    public void atualizarContadorTransferencia() {
+        contadorTransferencia++;
+    }
+    public int getContadorTransferencia() {
+        return contadorTransferencia;
+    }
+
+    // Fim dos metodos de Conta Corrente
 
     // Metodos de Conta Poupanca
     public void transferenciaContaPoupanca(double valor, int numContaDestino) {
@@ -340,11 +348,5 @@ public class ContaDAO extends Conta {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
-    }
-    public void atualizarContadorTransferencia() {
-        contadorTransferencia++;
-    }
-    public int getContadorTransferencia() {
-        return contadorTransferencia;
     }
 }

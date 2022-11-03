@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="VIEW.frmPrincipalCorrenteVIEW">
-  <grid id="27dc6" binding="painelPrincipal" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="painelPrincipal" layout-manager="GridLayoutManager" row-count="11" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="645" height="823"/>
@@ -10,7 +10,7 @@
     <children>
       <component id="e958c" class="javax.swing.JButton" binding="BtnSacar">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
@@ -19,7 +19,7 @@
       </component>
       <component id="f9a89" class="javax.swing.JButton" binding="btnDepositar">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
@@ -28,7 +28,7 @@
       </component>
       <component id="36fca" class="javax.swing.JButton" binding="btnTransferir">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
@@ -37,30 +37,30 @@
       </component>
       <vspacer id="6f4e3">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
       <vspacer id="8f1e">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
       <component id="66448" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Unispace" size="16" style="1"/>
+          <font name="Unispace" size="18" style="1"/>
           <text value="Bem vindo (a)"/>
         </properties>
       </component>
       <component id="a4d55" class="javax.swing.JButton" binding="MOSTRARDADOSDACONTAButton" default-binding="true">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
@@ -69,14 +69,14 @@
       </component>
       <vspacer id="c8bb3">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
       <component id="c8e0d" class="javax.swing.JButton" binding="btnEncerrar">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
@@ -85,11 +85,40 @@
       </component>
       <vspacer id="a0e5f">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="10" height="10"/>
           </grid>
         </constraints>
       </vspacer>
+      <component id="8dffd" class="javax.swing.JLabel" binding="txtNomeUsuario">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Unispace" size="18" style="1"/>
+          <text value="NomeUsuario"/>
+        </properties>
+      </component>
+      <component id="40ece" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Unispace" size="18" style="1"/>
+          <text value="Saldo: R$"/>
+        </properties>
+      </component>
+      <component id="c5ca6" class="javax.swing.JLabel" binding="txtSaldo">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Unispace" size="18" style="1"/>
+          <text value="0000"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

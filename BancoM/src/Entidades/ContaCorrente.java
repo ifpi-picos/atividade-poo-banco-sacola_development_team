@@ -41,11 +41,11 @@ public class ContaCorrente extends Conta {
     public void sacar(double valor, int numConta) {
         ContaDAO contaDAO = new ContaDAO();
         int opcao;
-        JOptionPane.showMessageDialog(null, "Saldo: " + contaDAO.puxarSaldoConta(numConta));
         if (valor < contaDAO.puxarSaldoConta(numConta)) {
             contaDAO.puxarConta(numConta);
             contaDAO.saqueConta(valor);
 
+            JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
             opcao = JOptionPane.showOptionDialog(null,
                     "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                     null, new String[]{"Sim", "Não"}, "Comprovante");
@@ -80,6 +80,7 @@ public class ContaCorrente extends Conta {
                     contaDAO.saqueConta(-(operacao));
                     contaDAO.atualizarChequeEspecial(operacao);
                 }
+                JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
 
                 opcao = JOptionPane.showOptionDialog(null,
                         "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
@@ -116,7 +117,6 @@ public class ContaCorrente extends Conta {
                 contaDAO.transferenciaContaCorrente(valor, numeroConta);
             }
             contaDAO.atualizarContadorTransferencia();
-            JOptionPane.showMessageDialog(null, contaDAO.getContadorTransferencia());
             JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso!");
 
             int opcao = JOptionPane.showOptionDialog(null,

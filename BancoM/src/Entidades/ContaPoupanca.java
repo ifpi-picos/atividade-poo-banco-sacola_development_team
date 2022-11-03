@@ -39,11 +39,10 @@ public class ContaPoupanca extends Conta {
         }
     }
 
+    // Getters and Setters
     public double getTaxaJuros() {
         return 0.05;
     }
-
-
 
     public double getRendimento() {
         return rendimento;

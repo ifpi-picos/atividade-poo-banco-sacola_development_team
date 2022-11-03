@@ -4,10 +4,11 @@ import VIEW.frmLoginVIEW;
 import VIEW.frmRegistroVIEW;
 
 import javax.swing.*;
+import java.text.ParseException;
 
 public class Banco {
 
-    public void menu() {
+    public void menu() throws ParseException {
         int opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Login","Cadastro", "Sair"}, "Login");
         switch (opcao) {
             case 0 -> {

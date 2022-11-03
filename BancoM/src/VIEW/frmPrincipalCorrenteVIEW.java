@@ -15,6 +15,8 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
     private JButton btnTransferir;
     private JButton MOSTRARDADOSDACONTAButton;
     private JButton btnEncerrar;
+    private JLabel txtNomeUsuario;
+    private JLabel txtSaldo;
 
     ContaDAO contaDAO = new ContaDAO();
 
@@ -25,6 +27,8 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
         setVisible(true);
 
         dispose();
+        txtNomeUsuario.setText(frmLoginVIEW.usuario);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
         BtnSacar.addActionListener(e -> sacar());
         btnDepositar.addActionListener(e -> depositar());
         btnTransferir.addActionListener(e -> transferir());
@@ -61,18 +65,21 @@ public class frmPrincipalCorrenteVIEW extends JFrame {
             ContaCorrente contaCorrente = new ContaCorrente();
             contaCorrente.transferir(valorTransferencia, numeroConta, frmLoginVIEW.numConta);
         }
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
 
     private void depositar() {
         double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do depósito: "));
         ContaCorrente contaCorrente = new ContaCorrente();
         contaCorrente.depositar(valorDeposito, frmLoginVIEW.numConta);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
 
     private void sacar() {
         double valorSaque = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do saque: "));
         ContaCorrente contaCorrente = new ContaCorrente();
         contaCorrente.sacar(valorSaque, frmLoginVIEW.numConta);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
 }
 
