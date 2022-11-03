@@ -147,7 +147,7 @@
         </constraints>
         <properties>
           <font name="Unispace" size="18" style="1"/>
-          <text value="APELIDO"/>
+          <text value="Usuário:"/>
         </properties>
       </component>
       <component id="5cc60" class="javax.swing.JTextField" binding="txtNovoUsuario">
@@ -166,7 +166,7 @@
         </constraints>
         <properties>
           <font name="Unispace" size="16" style="1"/>
-          <text value="Logradouro:"/>
+          <text value="Rua:"/>
         </properties>
       </component>
       <component id="8e4a" class="javax.swing.JLabel">
