@@ -18,7 +18,7 @@ public class ClienteDAO extends Cliente {
         // Conexão com o banco de dados
         String sql = "INSERT INTO clientes (nome_Cliente, cpf_Cliente, data_Nascimento) values (?, ?, ?)";
         String sql2 = "INSERT INTO usuarios (nome_Usuario, senha_Usuario, cod_Cliente) values (?, ?, ?)";
-        String sql3 = "INSERT INTO endereco (logradouro, numero, cep, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?)";
+        String sql3 = "INSERT INTO endereco (logradouro, numero, cep, bairro, cidade, uf, cod_Cliente) values (?, ?, ?, ?, ?, ?, ?)";
         String sql4 = "select id_Clientes from clientes where cpf_Cliente = ?";
 
         conn = new ConexaoDAO().conectarBD();
