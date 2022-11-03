@@ -1,6 +1,8 @@
 package Entidades;
 
 import DAO.ContaDAO;
+import Services.Email;
+import Services.Sms;
 
 import javax.swing.*;
 
