@@ -1,5 +1,5 @@
 Como executar o projeto:
-Para executar o projeto siga o caminho BancoM/src/Main e execute a classe Main , para conseguir rodar é necessário o driver JDBC MySQL, link de como baixar e instalar o driver abaixo:
+Para executar o projeto siga o caminho BancoM/src/Main e execute a classe Main, para conseguir rodar é necessário o driver JDBC MySQL, link de como baixar e instalar o driver abaixo:
 
 https://www.youtube.com/watch?v=zGnL-LIFT9Y;
 
