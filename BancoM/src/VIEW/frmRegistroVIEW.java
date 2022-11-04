@@ -122,6 +122,12 @@ public class frmRegistroVIEW extends JDialog {
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.cadastrarCliente(cliente);
 
-        dispose();
+        if (clienteDAO.checagemDeSucesso == 1) {
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+        }
+
     }
 }
