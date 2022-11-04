@@ -9,5 +9,5 @@ OBS: Só está funcionando no IntelliJ.
 
 
 Alunos:
-Armando Pereira de Sousa
+Armando Pereira de Sousa e
 Gabriel Marcos Batista Guimarães
