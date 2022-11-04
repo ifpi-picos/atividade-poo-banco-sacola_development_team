@@ -3,7 +3,6 @@ package VIEW;
 import DAO.ContaDAO;
 import Entidades.ContaCorrente;
 
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,13 +16,14 @@ public class frmPrincipalCorrenteVIEW extends JDialog {
     private JButton btnEncerrar;
     private JLabel txtNomeUsuario;
     private JLabel txtSaldo;
+    private JButton atualizarButton;
 
     ContaDAO contaDAO = new ContaDAO();
 
     public frmPrincipalCorrenteVIEW(JFrame parent) {
         super(parent);
         setContentPane(painelPrincipal);
-        setMinimumSize(new Dimension(450, 474));
+        setMinimumSize(new Dimension(360, 474));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
         setLocationRelativeTo(parent);
@@ -37,11 +37,13 @@ public class frmPrincipalCorrenteVIEW extends JDialog {
         btnTransferir.addActionListener(e -> transferir());
         MOSTRARDADOSDACONTAButton.addActionListener(e -> mostrarDados());
         btnEncerrar.addActionListener(e -> dispose());
+        atualizarButton.addActionListener(e -> txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta))));
     }
 
     private void mostrarDados() {
         ContaDAO contaDAO = new ContaDAO();
         contaDAO.exibirInformacoesDaConta(frmLoginVIEW.numConta);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
 
 

@@ -14,6 +14,7 @@ public class frmPrincipalPoupancaVIEW extends JDialog{
     private JButton btnMostrarDadosConta;
     private JLabel txtNomeUsuario;
     private JLabel txtSaldo;
+    private JButton btnAtualizar;
 
     ContaDAO contaDAO = new ContaDAO();
 
@@ -30,6 +31,7 @@ public class frmPrincipalPoupancaVIEW extends JDialog{
         btnTransferencia.addActionListener(e -> transferir());
         btnEncerrar.addActionListener(e -> dispose());
         btnMostrarDadosConta.addActionListener(e -> mostrarDados());
+        btnAtualizar.addActionListener(e -> txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta))));
     }
 
     private void mostrarDados() {
