@@ -16,7 +16,7 @@ public class ContaCorrente extends Conta {
         ContaDAO contaDAO = new ContaDAO();
         if (valor > 0) {
             contaDAO.puxarConta(numConta);
-            contaDAO.depositoConta(valor);
+            contaDAO.depositoContaCorrente(valor);
             JOptionPane.showMessageDialog(null, "Depósito realizado com sucesso!");
 
             int opcao = JOptionPane.showOptionDialog(null,
@@ -45,7 +45,7 @@ public class ContaCorrente extends Conta {
         int opcao;
         if (valor <= contaDAO.puxarSaldoConta(numConta)) {
             contaDAO.puxarConta(numConta);
-            contaDAO.saqueConta(valor);
+            contaDAO.saqueContaCorrente(valor);
 
             JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
             opcao = JOptionPane.showOptionDialog(null,
@@ -79,7 +79,7 @@ public class ContaCorrente extends Conta {
                 if (contaDAO.puxarSaldoConta(numConta) <= 0) {
                     contaDAO.atualizarChequeEspecial(operacao);
                 } else {
-                    contaDAO.saqueConta(valor + operacao);
+                    contaDAO.saqueContaCorrente(valor + operacao);
                     contaDAO.atualizarChequeEspecial(operacao);
                 }
                 JOptionPane.showMessageDialog(null, "Saque realizado com sucesso!");
@@ -114,7 +114,7 @@ public class ContaCorrente extends Conta {
             contaDAO.puxarConta(numConta);
             if (contaDAO.getContadorTransferencia() > 2) {
                 JOptionPane.showMessageDialog(null, "Você atingiu o limite de 2 transferências por dia! A partir desse momento, será cobrado uma taxa de 3% por transferência.");
-                contaDAO.transferenciaContaCorrente(valor - (valor * 0.03), numeroConta);
+                contaDAO.transferenciaContaCorrente(valor, numeroConta);
             } else {
                 contaDAO.transferenciaContaCorrente(valor, numeroConta);
             }

@@ -2,6 +2,8 @@ package VIEW;
 
 import DAO.ContaDAO;
 import Entidades.ContaPoupanca;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -18,6 +20,8 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
     private JLabel txtNomeUsuario;
     private JLabel txtSaldo;
     private JButton btnAtualizar;
+    private JButton btnSacar;
+    private JButton btnDepositar;
 
     ContaDAO contaDAO = new ContaDAO();
 
@@ -35,11 +39,27 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
         btnEncerrar.addActionListener(e -> dispose());
         btnMostrarDadosConta.addActionListener(e -> mostrarDados());
         btnAtualizar.addActionListener(e -> txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta))));
+        btnSacar.addActionListener(e -> sacar());
+        btnDepositar.addActionListener(e -> depositar());
     }
 
     private void mostrarDados() {
         ContaDAO contaDAO = new ContaDAO();
         contaDAO.exibirInformacoesDaConta(frmLoginVIEW.numConta);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
+    }
+
+    private void sacar() {
+        ContaPoupanca contaPoupanca = new ContaPoupanca();
+        double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor a ser sacado:"));
+        contaPoupanca.sacar(valor, frmLoginVIEW.numConta);
+        txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
+    }
+
+    private void depositar() {
+        ContaPoupanca contaPoupanca = new ContaPoupanca();
+        double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor a ser depositado:"));
+        contaPoupanca.depositar(valor, frmLoginVIEW.numConta);
         txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
 
@@ -67,47 +87,57 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
      */
     private void $$$setupUI$$$() {
         painelPrincipal = new JPanel();
-        painelPrincipal.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(5, 3, new Insets(20, 60, 20, 60), 10, 10));
+        painelPrincipal.setLayout(new GridLayoutManager(7, 3, new Insets(20, 60, 20, 60), 10, 10));
         btnTransferencia = new JButton();
         Font btnTransferenciaFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnTransferencia.getFont());
         if (btnTransferenciaFont != null) btnTransferencia.setFont(btnTransferenciaFont);
         btnTransferencia.setText("TRANSFERENCIA");
-        painelPrincipal.add(btnTransferencia, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(btnTransferencia, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnEncerrar = new JButton();
         Font btnEncerrarFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnEncerrar.getFont());
         if (btnEncerrarFont != null) btnEncerrar.setFont(btnEncerrarFont);
         btnEncerrar.setText("ENCERRAR");
-        painelPrincipal.add(btnEncerrar, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(btnEncerrar, new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnMostrarDadosConta = new JButton();
         Font btnMostrarDadosContaFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnMostrarDadosConta.getFont());
         if (btnMostrarDadosContaFont != null) btnMostrarDadosConta.setFont(btnMostrarDadosContaFont);
         btnMostrarDadosConta.setText("MOSTRAR DADOS DA CONTA");
-        painelPrincipal.add(btnMostrarDadosConta, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(btnMostrarDadosConta, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$("Unispace", Font.BOLD, 18, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Bem vindo (a)");
-        painelPrincipal.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         Font label2Font = this.$$$getFont$$$("Unispace", Font.BOLD, 18, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setText("Saldo:");
-        painelPrincipal.add(label2, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtSaldo = new JLabel();
         Font txtSaldoFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, txtSaldo.getFont());
         if (txtSaldoFont != null) txtSaldo.setFont(txtSaldoFont);
         txtSaldo.setText("Label");
-        painelPrincipal.add(txtSaldo, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(txtSaldo, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtNomeUsuario = new JLabel();
         Font txtNomeUsuarioFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, txtNomeUsuario.getFont());
         if (txtNomeUsuarioFont != null) txtNomeUsuario.setFont(txtNomeUsuarioFont);
         txtNomeUsuario.setText("Label");
-        painelPrincipal.add(txtNomeUsuario, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(txtNomeUsuario, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnAtualizar = new JButton();
         Font btnAtualizarFont = this.$$$getFont$$$("Unispace", Font.PLAIN, 12, btnAtualizar.getFont());
         if (btnAtualizarFont != null) btnAtualizar.setFont(btnAtualizarFont);
         btnAtualizar.setText("Atualizar");
-        painelPrincipal.add(btnAtualizar, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        painelPrincipal.add(btnAtualizar, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSacar = new JButton();
+        Font btnSacarFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnSacar.getFont());
+        if (btnSacarFont != null) btnSacar.setFont(btnSacarFont);
+        btnSacar.setText("SACAR");
+        painelPrincipal.add(btnSacar, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnDepositar = new JButton();
+        Font btnDepositarFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnDepositar.getFont());
+        if (btnDepositarFont != null) btnDepositar.setFont(btnDepositarFont);
+        btnDepositar.setText("DEPOSITAR");
+        painelPrincipal.add(btnDepositar, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -138,4 +168,5 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return painelPrincipal;
     }
+
 }

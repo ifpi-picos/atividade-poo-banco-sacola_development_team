@@ -202,7 +202,7 @@ public class ContaDAO extends Conta {
     }
 
     // Metodos de Conta Corrente
-    public void saqueConta(double valor) {
+    public void saqueContaCorrente(double valor) {
         String sql = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
         try {
@@ -217,6 +217,8 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao sacar: " + e.getMessage());
         }
     }
+
+
     public void atualizarChequeEspecial(double valor) {
         String sql = "UPDATE contas SET chequeEspecial = ? WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
@@ -231,7 +233,7 @@ public class ContaDAO extends Conta {
         }
     }
 
-    public void depositoConta(double valor) {
+    public void depositoContaCorrente(double valor) {
         String sql = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
         try {
@@ -252,6 +254,12 @@ public class ContaDAO extends Conta {
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql1);
+
+            if (contadorTransferencia > 2) {
+                pstmt.setDouble(1, contaCorrente.getSaldoConta() - (valor + (valor * 0.03)));
+            } else {
+                pstmt.setDouble(1, contaCorrente.getSaldoConta() - valor);
+            }
             pstmt.setDouble(1, contaCorrente.getSaldoConta() - valor);
             pstmt.setInt(2, contaCorrente.getNumConta());
             pstmt.execute();
@@ -300,6 +308,37 @@ public class ContaDAO extends Conta {
     // Fim dos metodos de Conta Corrente
 
     // Metodos de Conta Poupanca
+
+    public void saqueContaPoupanca(double valor) {
+        String sql = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
+        conn = new ConexaoDAO().conectarBD();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor);
+            pstmt.setInt(2, contaPoupanca.getNumConta());
+            pstmt.execute();
+            pstmt.close();
+
+            puxarSaldoConta(contaPoupanca.getNumConta());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao sacar: " + e.getMessage());
+        }
+    }
+
+    public void depositoContaPoupanca(double valor) {
+        String sql = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
+        conn = new ConexaoDAO().conectarBD();
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() + valor);
+            pstmt.setInt(2, contaPoupanca.getNumConta());
+            pstmt.execute();
+            pstmt.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao depositar: " + e.getMessage());
+        }
+    }
+
     public void transferenciaContaPoupanca(double valor, int numContaDestino) {
         String sql1 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
@@ -309,7 +348,7 @@ public class ContaDAO extends Conta {
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql1);
-            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - valor);
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() - (valor + (valor * contaPoupanca.getTaxaJuros())));
             pstmt.setInt(2, contaPoupanca.getNumConta());
             pstmt.execute();
             pstmt.close();
@@ -331,15 +370,13 @@ public class ContaDAO extends Conta {
 
             if (tipoContaDestino == 1) {
                 pstmt = conn.prepareStatement(sql3);
-                pstmt.setDouble(1, saldoContaDestino + valor - (valor * contaPoupanca.getTaxaJuros()));
+                pstmt.setDouble(1, saldoContaDestino + valor);
             } else {
                 if (valor > 1000) {
                     contaPoupanca.setRendimento(0.15);
                 }
-
                 pstmt = conn.prepareStatement(sql3);
-                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento()))
-                        - (valor * contaPoupanca.getTaxaJuros()));
+                pstmt.setDouble(1, saldoContaDestino + (valor + (valor * contaPoupanca.getRendimento())));
             }
             pstmt.setInt(2, numContaDestino);
             pstmt.execute();
