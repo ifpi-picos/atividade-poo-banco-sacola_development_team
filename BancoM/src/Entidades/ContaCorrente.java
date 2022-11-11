@@ -4,7 +4,6 @@ import DAO.ContaDAO;
 import Services.Email;
 import Services.Sms;
 
-
 import javax.swing.*;
 
 public class ContaCorrente extends Conta {
@@ -21,11 +20,11 @@ public class ContaCorrente extends Conta {
 
             int opcao = JOptionPane.showOptionDialog(null,
                     "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                    null, new String[]{"Sim","Não"}, "Comprovante");
-            if (opcao == 0){
+                    null, new String[]{"Sim", "Não"}, "Comprovante");
+            if (opcao == 0) {
                 opcao = JOptionPane.showOptionDialog(null,
                         "Por qual via deseja receber?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                        null, new String[]{"SMS","EMAIL"}, "Comprovante");
+                        null, new String[]{"SMS", "EMAIL"}, "Comprovante");
                 switch (opcao) {
                     case 0 -> {
                         Sms sms = new Sms();
@@ -39,6 +38,7 @@ public class ContaCorrente extends Conta {
             }
         }
     }
+
     @Override
     public void sacar(double valor, int numConta) {
         ContaDAO contaDAO = new ContaDAO();
@@ -107,6 +107,7 @@ public class ContaCorrente extends Conta {
 
         }
     }
+
     @Override
     public void transferir(double valor, int numeroConta, int numConta) {
         ContaDAO contaDAO = new ContaDAO();
@@ -123,11 +124,11 @@ public class ContaCorrente extends Conta {
 
             int opcao = JOptionPane.showOptionDialog(null,
                     "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                    null, new String[]{"Sim","Não"}, "Comprovante");
-            if (opcao == 0){
+                    null, new String[]{"Sim", "Não"}, "Comprovante");
+            if (opcao == 0) {
                 opcao = JOptionPane.showOptionDialog(null,
                         "Por qual via deseja receber?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                        null, new String[]{"SMS","EMAIL"}, "Comprovante");
+                        null, new String[]{"SMS", "EMAIL"}, "Comprovante");
                 switch (opcao) {
                     case 0 -> {
                         Sms sms = new Sms();
@@ -148,6 +149,7 @@ public class ContaCorrente extends Conta {
     public double getChequeEspecial() {
         return chequeEspecial;
     }
+
     public void setChequeEspecial(double chequeEspecial) {
         this.chequeEspecial = chequeEspecial;
     }

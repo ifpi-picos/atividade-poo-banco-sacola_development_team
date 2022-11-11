@@ -1,16 +1,12 @@
 package Entidades;
 
 
-
-
-
 public class Conta {
 
     private int numConta;
     private String agenciaConta;
     private double saldoConta;
     private int tipoConta;
-
 
 
     // Metodos
@@ -27,12 +23,11 @@ public class Conta {
     public void transferir(double valor, int numeroConta, int numConta) {
         this.saldoConta -= valor;
     }
+
     public void exibirInformacoesDaConta(int numConta) {
     }
 
     // Getters e Setters
-
-
 
 
     public int getNumConta() {

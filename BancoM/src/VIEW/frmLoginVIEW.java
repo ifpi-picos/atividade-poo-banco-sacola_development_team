@@ -17,14 +17,13 @@ import java.util.Locale;
 
 
 public class frmLoginVIEW extends JDialog {
-    protected static String usuario;
     public static int numConta;
+    protected static String usuario;
     private JPanel loginPanel;
     private JTextField txtUsuario;
     private JTextField txtSenha;
     private JButton btnOk;
     private JButton btnCancel;
-
 
     public frmLoginVIEW(JFrame parent) {
         super(parent);

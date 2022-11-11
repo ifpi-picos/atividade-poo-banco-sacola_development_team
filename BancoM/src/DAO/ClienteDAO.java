@@ -2,7 +2,6 @@ package DAO;
 
 import Entidades.Cliente;
 
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClienteDAO extends Cliente {
+    public int checagemDeSucesso = 0;
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;
-    public int checagemDeSucesso = 0;
 
     public void cadastrarCliente(Cliente cliente) {
         // Conexão com o banco de dados
@@ -73,8 +72,7 @@ public class ClienteDAO extends Cliente {
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "CPF ou Apelido já cadastrado!");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente: " + erro.getMessage());
             }
         }

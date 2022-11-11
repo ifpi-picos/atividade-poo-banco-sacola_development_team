@@ -10,7 +10,7 @@ public class Cliente {
 
     private Usuario usuarioCliente;
 
-// Getters e Setters
+    // Getters e Setters
     public int getIdCliente() {
         return idCliente;
     }
@@ -18,6 +18,7 @@ public class Cliente {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+
     public String getNomeClient() {
         return nomeCliente;
     }
@@ -49,9 +50,6 @@ public class Cliente {
     public void setEnderecoCliente(Endereco enderecoCliente) {
         this.enderecoCliente = enderecoCliente;
     }
-
-
-
 
 
     public Usuario getUsuarioCliente() {

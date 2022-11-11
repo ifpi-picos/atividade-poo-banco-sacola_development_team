@@ -10,12 +10,11 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Locale;
 
 
 public class frmPrincipalCorrenteVIEW extends JDialog {
+    ContaDAO contaDAO = new ContaDAO();
     private JPanel painelPrincipal;
     private JButton BtnSacar;
     private JButton btnDepositar;
@@ -26,8 +25,6 @@ public class frmPrincipalCorrenteVIEW extends JDialog {
     private JLabel txtSaldo;
     private JButton atualizarButton;
     private JButton btnSairConta;
-
-    ContaDAO contaDAO = new ContaDAO();
 
     public frmPrincipalCorrenteVIEW(JFrame parent) {
         super(parent);
@@ -59,7 +56,6 @@ public class frmPrincipalCorrenteVIEW extends JDialog {
         contaDAO.exibirInformacoesDaConta(frmLoginVIEW.numConta);
         txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta)));
     }
-
 
     private void transferir() {
         if (contaDAO.getContadorTransferencia() > 2) {

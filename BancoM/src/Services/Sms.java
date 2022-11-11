@@ -10,13 +10,14 @@ import java.util.Date;
 public class Sms implements Notificacao {
     Date data = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
     @Override
     public void enviarNotificacao(String operacao, double valor) {
         JOptionPane.showMessageDialog(null,
                 "Enviando SMS..." + "\n"
-                + "Operação: " + operacao +
-                "\n" + "Valor: R$ " + valor + "\n"
-                + "Data da operação: " + dateFormat.format(data.getTime()));
+                        + "Operação: " + operacao +
+                        "\n" + "Valor: R$ " + valor + "\n"
+                        + "Data da operação: " + dateFormat.format(data.getTime()));
     }
 }
 

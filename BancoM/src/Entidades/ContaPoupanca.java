@@ -4,7 +4,6 @@ import DAO.ContaDAO;
 import Services.Email;
 import Services.Sms;
 
-
 import javax.swing.*;
 
 public class ContaPoupanca extends Conta {
@@ -82,11 +81,11 @@ public class ContaPoupanca extends Conta {
             JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso!");
             int opcao = JOptionPane.showOptionDialog(null,
                     "Deseja receber o comprovante?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                    null, new String[]{"Sim","Não"}, "Comprovante");
-            if (opcao == 0){
+                    null, new String[]{"Sim", "Não"}, "Comprovante");
+            if (opcao == 0) {
                 opcao = JOptionPane.showOptionDialog(null,
                         "Por qual via deseja receber?", "Banco", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                        null, new String[]{"SMS","EMAIL"}, "Comprovante");
+                        null, new String[]{"SMS", "EMAIL"}, "Comprovante");
                 switch (opcao) {
                     case 0 -> {
                         Sms sms = new Sms();

@@ -5,7 +5,6 @@ public class Usuario {
     private String nomeUsuario, senhaUsuario;
 
 
-
     // Getters e Setters
 
 

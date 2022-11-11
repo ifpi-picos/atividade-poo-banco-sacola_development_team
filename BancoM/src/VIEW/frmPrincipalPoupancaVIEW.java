@@ -9,12 +9,11 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Locale;
 
 
 public class frmPrincipalPoupancaVIEW extends JDialog {
+    ContaDAO contaDAO = new ContaDAO();
     private JButton btnTransferencia;
     private JButton btnEncerrar;
     private JPanel painelPrincipal;
@@ -25,8 +24,6 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
     private JButton btnSacar;
     private JButton btnDepositar;
     private JButton btnSairConta;
-
-    ContaDAO contaDAO = new ContaDAO();
 
     public frmPrincipalPoupancaVIEW(JFrame parent) {
         super(parent);

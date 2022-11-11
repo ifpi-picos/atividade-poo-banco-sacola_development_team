@@ -14,13 +14,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ContaDAO extends Conta {
+    public static int contadorTransferencia = 1;
+    public int tipoContaDAO;
     Connection conn;
     PreparedStatement pstmt;
     ResultSet rs;
     Random random = new Random();
-    public int tipoContaDAO;
-    public static int contadorTransferencia = 1;
-
     ContaCorrente contaCorrente = new ContaCorrente();
     ContaPoupanca contaPoupanca = new ContaPoupanca();
     ArrayList<Integer> contas = new ArrayList<>();
@@ -50,7 +49,6 @@ public class ContaDAO extends Conta {
         double chequeEspecial = 500;
 
 
-
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, numConta);
@@ -67,6 +65,7 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar conta: " + e.getMessage());
         }
     }
+
     public void abrirNovaConta(String usuarioLogin) {
         String sql1 = "SELECT cod_Cliente FROM usuarios WHERE nome_usuario = ?";
         conn = new ConexaoDAO().conectarBD();
@@ -121,6 +120,7 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao puxar conta: " + e.getMessage());
         }
     }
+
     public double puxarSaldoConta(int numConta) {
         String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
         conn = new ConexaoDAO().conectarBD();
@@ -141,6 +141,7 @@ public class ContaDAO extends Conta {
         }
         return 0;
     }
+
     public void exibirInformacoesDaConta(int numConta) {
         puxarConta(numConta);
         String s = contaCorrente.getTipoConta() == 1 ? "Conta Corrente" : "Conta Poupança";
@@ -156,6 +157,7 @@ public class ContaDAO extends Conta {
                     "\nTipo da conta: " + s);
         }
     }
+
     public int selecionarConta(String nomeUsuario) {
         String sql1 = "SELECT cod_Cliente FROM usuarios WHERE nome_usuario = ?";
         String sql2 = "SELECT numConta FROM contas WHERE cod_Cliente = ?";
@@ -246,6 +248,7 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao depositar: " + e.getMessage());
         }
     }
+
     public void transferenciaContaCorrente(double valor, int numContaDestino) {
         String sql1 = "UPDATE contas SET saldoDaConta = ? WHERE numConta = ?";
         String sql2 = "SELECT saldoDaConta FROM contas WHERE numConta = ?";
@@ -298,9 +301,11 @@ public class ContaDAO extends Conta {
             JOptionPane.showMessageDialog(null, "Erro ao transferir: " + e.getMessage());
         }
     }
+
     public void atualizarContadorTransferencia() {
         contadorTransferencia++;
     }
+
     public int getContadorTransferencia() {
         return contadorTransferencia;
     }
