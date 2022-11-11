@@ -330,7 +330,7 @@ public class ContaDAO extends Conta {
         conn = new ConexaoDAO().conectarBD();
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setDouble(1, contaPoupanca.getSaldoConta() + valor);
+            pstmt.setDouble(1, contaPoupanca.getSaldoConta() + (valor + (valor * contaPoupanca.getRendimento())));
             pstmt.setInt(2, contaPoupanca.getNumConta());
             pstmt.execute();
             pstmt.close();

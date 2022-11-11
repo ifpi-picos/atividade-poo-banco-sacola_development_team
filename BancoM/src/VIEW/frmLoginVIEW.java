@@ -41,7 +41,7 @@ public class frmLoginVIEW extends JDialog {
 
     }
 
-    private void logar() {
+    protected void logar() {
         try {
 
             String nomeusuario = txtUsuario.getText();

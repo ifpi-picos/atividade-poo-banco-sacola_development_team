@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 
 
@@ -22,6 +24,7 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
     private JButton btnAtualizar;
     private JButton btnSacar;
     private JButton btnDepositar;
+    private JButton btnSairConta;
 
     ContaDAO contaDAO = new ContaDAO();
 
@@ -41,6 +44,11 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
         btnAtualizar.addActionListener(e -> txtSaldo.setText(String.valueOf(contaDAO.puxarSaldoConta(frmLoginVIEW.numConta))));
         btnSacar.addActionListener(e -> sacar());
         btnDepositar.addActionListener(e -> depositar());
+        btnSairConta.addActionListener(e -> {
+            dispose();
+            frmLoginVIEW login = new frmLoginVIEW(null);
+            login.setVisible(true);
+        });
     }
 
     private void mostrarDados() {
@@ -87,7 +95,7 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
      */
     private void $$$setupUI$$$() {
         painelPrincipal = new JPanel();
-        painelPrincipal.setLayout(new GridLayoutManager(7, 3, new Insets(20, 60, 20, 60), 10, 10));
+        painelPrincipal.setLayout(new GridLayoutManager(8, 3, new Insets(20, 60, 20, 60), 10, 10));
         btnTransferencia = new JButton();
         Font btnTransferenciaFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnTransferencia.getFont());
         if (btnTransferenciaFont != null) btnTransferencia.setFont(btnTransferenciaFont);
@@ -96,8 +104,8 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
         btnEncerrar = new JButton();
         Font btnEncerrarFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnEncerrar.getFont());
         if (btnEncerrarFont != null) btnEncerrar.setFont(btnEncerrarFont);
-        btnEncerrar.setText("ENCERRAR");
-        painelPrincipal.add(btnEncerrar, new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnEncerrar.setText("SAIR DO APLICATIVO");
+        painelPrincipal.add(btnEncerrar, new GridConstraints(7, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnMostrarDadosConta = new JButton();
         Font btnMostrarDadosContaFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnMostrarDadosConta.getFont());
         if (btnMostrarDadosContaFont != null) btnMostrarDadosConta.setFont(btnMostrarDadosContaFont);
@@ -138,6 +146,11 @@ public class frmPrincipalPoupancaVIEW extends JDialog {
         if (btnDepositarFont != null) btnDepositar.setFont(btnDepositarFont);
         btnDepositar.setText("DEPOSITAR");
         painelPrincipal.add(btnDepositar, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btnSairConta = new JButton();
+        Font btnSairContaFont = this.$$$getFont$$$("Unispace", Font.BOLD, 18, btnSairConta.getFont());
+        if (btnSairContaFont != null) btnSairConta.setFont(btnSairContaFont);
+        btnSairConta.setText("SAIR DA CONTA");
+        painelPrincipal.add(btnSairConta, new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
